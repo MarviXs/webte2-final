@@ -1,0 +1,17 @@
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "7012:3306"
+  frontend:
+    build:
+      args:
+        - BUILD_ENV=development
+        - VITE_API_URL=http://localhost:7080/api/
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  php:
+    environment:
+      - APP_ENV=dev
