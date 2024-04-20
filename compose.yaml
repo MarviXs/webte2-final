@@ -1,6 +1,7 @@
 services:
   nginx_proxy:
     image: nginx:latest
+    restart: unless-stopped
     ports:
       - "7080:80"
       - "7443:443"
@@ -19,6 +20,7 @@ services:
         condition: service_started
   backend:
     image: nginx:latest
+    restart: unless-stopped
     volumes:
       - ./docker/nginx/backend.conf:/etc/nginx/nginx.conf
       - ./backend:/var/www/html
@@ -27,6 +29,7 @@ services:
         condition: service_started
   php:
     image: "backendphp"
+    restart: unless-stopped
     build: 
       context: ./backend
       args:
@@ -39,7 +42,7 @@ services:
       - ./backend:/var/www/html
   db:
     image: mysql:8.3.0
-    restart: always
+    restart: unless-stopped
     volumes:
       - webte_mysql:/var/lib/mysql
       - ./db/export:/docker-entrypoint-initdb.d
@@ -56,7 +59,7 @@ services:
       interval: 5s
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: unless-stopped
     environment:
       PMA_HOST: db
       PMA_ABSOLUTE_URI: ${APP_URL}/phpmyadmin/
@@ -64,6 +67,7 @@ services:
       db:
         condition: service_healthy
   frontend:
+    restart: unless-stopped
     build:
       context: ./frontend
       args:
