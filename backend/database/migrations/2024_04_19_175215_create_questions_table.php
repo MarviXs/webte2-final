@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->text('question_text');
             $table->enum('question_type', ['choice', 'open']);
-            $table->string('code');
+            $table->string('code')->unique()->index();
             $table->boolean('is_active');
             $table->timestamps();
 
