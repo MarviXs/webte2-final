@@ -21,7 +21,7 @@ class Question extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
     public function subject(): BelongsTo
@@ -37,5 +37,20 @@ class Question extends Model
     public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public static function generateCode($length = 5): string
+    {
+        do {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $code = $randomString;
+        } while (self::where('code', $code)->exists());
+
+        return $code;
     }
 }
