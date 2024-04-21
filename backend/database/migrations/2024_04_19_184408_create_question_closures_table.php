@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('question_closures', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->dateTime('closure_time');
+            $table->text('note')->nullable();
             $table->timestamps();
-
             $table->foreignUuid('question_id')->constrained()->cascadeOnDelete();
         });
     }

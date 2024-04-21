@@ -10,6 +10,11 @@ class QuestionClosure extends Model
 {
     use HasUuids;
 
+    protected $fillable = [
+        'question_id',
+        'note',
+    ];
+
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);

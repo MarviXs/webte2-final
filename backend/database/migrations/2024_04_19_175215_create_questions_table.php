@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('question_text');
             $table->enum('question_type', ['choice', 'open']);
             $table->string('code')->unique()->index();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             $table->foreignUuid('owner_id')->constrained('users')->cascadeOnDelete();

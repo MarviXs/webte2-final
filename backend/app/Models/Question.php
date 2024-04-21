@@ -39,6 +39,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function closures(): HasMany
+    {
+        return $this->hasMany(QuestionClosure::class);
+    }
+
     public static function generateCode($length = 5): string
     {
         do {
