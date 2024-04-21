@@ -24,6 +24,8 @@ Route::prefix('questions')->group(function () {
     Route::get('/{id}', [QuestionController::class, 'show'])->middleware('auth:api');
     Route::put('/{id}', [QuestionController::class, 'update'])->middleware('auth:api');
     Route::delete('/{id}', [QuestionController::class, 'destroy'])->middleware('auth:api');
+    Route::post('/{question_id}/close', [VoteController::class, 'close'])->middleware('auth:api');
+    Route::get('/{question_id}/closures', [VoteController::class, 'closures'])->middleware('auth:api');
 
     Route::prefix('{question_id}/choices')->group(function () {
         Route::post('/', [ChoiceController::class, 'store'])->middleware('auth:api');
@@ -39,5 +41,4 @@ Route::prefix('vote')->group(function () {
     Route::get('/{code}/result', [VoteController::class, 'result']);
     Route::get('/{question_id}/result-archive/{closure_id}', [VoteController::class, 'result_archive'])->middleware('auth:api');
     Route::get('/{question_id}/result-comparison/', [VoteController::class, 'result_compare'])->middleware('auth:api');
-    Route::post('/{id}/close', [VoteController::class, 'close'])->middleware('auth:api');;
 });

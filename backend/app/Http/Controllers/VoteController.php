@@ -46,13 +46,13 @@ class VoteController extends Controller
         return response()->json(['message' => 'Answer submitted successfully.']);
     }
 
-    public function close(Request $request, string $id)
+    public function close(Request $request, string $question_id)
     {
         $validated = $request->validate([
             'note' => 'nullable'
         ]);
 
-        $question = Auth::user()->questions()->findOrFail($id);
+        $question = Auth::user()->questions()->findOrFail($question_id);
 
         $vote_closure = VoteClosure::create([
             'question_id' => $question->id,
@@ -60,6 +60,12 @@ class VoteController extends Controller
         ]);
 
         return new VoteClosureResource($vote_closure);
+    }
+
+    public function closures(Request $request, string $question_id)
+    {
+        $question = Auth::user()->questions()->findOrFail($question_id);
+        return VoteClosureResource::collection($question->closures);
     }
 
 

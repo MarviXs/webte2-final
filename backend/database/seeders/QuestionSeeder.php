@@ -40,5 +40,20 @@ class QuestionSeeder extends Seeder
             'subject_id' => $subject->id,
         ]);
 
+        $user2 = User::where('email', 'user2@example.com')->firstOrFail();
+        $question = $user2->questions()->create([
+            'question_type' => 'choice',
+            'question_text' => 'Do you like PHP?',
+            'code' => '67890',
+            'is_active' => true,
+            'subject_id' => $subject->id,
+        ]);
+        $question->choices()->createMany([
+            ['choice_text' => 'Yes'],
+            ['choice_text' => 'No'],
+        ]);
+
+
+
     }
 }
