@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('question_closures', function (Blueprint $table) {
+        Schema::create('vote_closures', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('note')->nullable();
             $table->timestamps();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('question_closures');
+        Schema::dropIfExists('vote_closures');
     }
 };

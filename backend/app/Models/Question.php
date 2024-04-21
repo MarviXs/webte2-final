@@ -41,7 +41,7 @@ class Question extends Model
 
     public function closures(): HasMany
     {
-        return $this->hasMany(QuestionClosure::class);
+        return $this->hasMany(VoteClosure::class);
     }
 
     public static function generateCode($length = 5): string

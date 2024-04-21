@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuestionResource;
+use App\Http\Resources\VoteClosureResource;
 use App\Models\Question;
-use App\Models\QuestionClosure;
+use App\Models\VoteClosure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
@@ -46,9 +46,25 @@ class VoteController extends Controller
         return response()->json(['message' => 'Answer submitted successfully.']);
     }
 
+    public function close(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            'note' => 'nullable'
+        ]);
+
+        $question = Auth::user()->questions()->findOrFail($id);
+
+        $vote_closure = VoteClosure::create([
+            'question_id' => $question->id,
+            'note' => $validated['note']
+        ]);
+
+        return new VoteClosureResource($vote_closure);
+    }
+
 
     /**
-     * @response array{ "answer": "Yes", "count": 2 }
+     * @response array{ "results": array{ "answer": "Yes", "count": 2 } }
      */
     public function result(string $code)
     {
@@ -60,11 +76,16 @@ class VoteController extends Controller
         $query = $this->prepareResultQuery($question, $startTime);
         $results = $query->get()->toArray();
 
-        return response()->json($results);
+        $response = [
+            'results' => $results,
+        ];
+
+        return response()->json($response);
     }
 
+
     /**
-     * @response array{ "answer": "Yes", "count": 2 }
+     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }
      */
     public function result_archive(string $question_id, $closure_id)
     {
@@ -78,23 +99,80 @@ class VoteController extends Controller
         $query = $this->prepareResultQuery($question, $startTime, $endTime);
         $results = $query->get()->toArray();
 
-        return response()->json($results);
+        $response = [
+            'closure' => new VoteClosureResource($closure),
+            'results' => $results,
+        ];
+
+        return response()->json($response);
     }
+
+
+    /**
+     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[]
+     */
+    public function result_compare(string $question_id)
+    {
+        $question = Auth::user()->questions()->with('choices', 'answers', 'answers.choice')->findOrFail($question_id);
+        $closures = $question->closures()->orderBy('created_at')->get();
+
+        $comparisons = [];
+
+        $previousClosure = null;
+        foreach ($closures as $closure) {
+            $startTime = $previousClosure ? $previousClosure->created_at : null;
+            $endTime = $closure->created_at;
+            $previousClosure = $closure;
+
+            $query = $this->prepareResultQuery($question, $startTime, $endTime);
+            $results = $query->get()->toArray();
+
+            $comparisons[] = [
+                'closure' => new VoteClosureResource($closure),
+                'results' => $results,
+            ];
+        }
+
+        // Add current voting data
+        $latestClosure = $question->closures()->latest('created_at')->first();
+        $startTime = $latestClosure ? $latestClosure->created_at : null;
+        $currentResults = $this->prepareResultQuery($question, $startTime, now())->get();
+        $comparisons[] = [
+            'closure' => null,
+            'results' => $currentResults,
+        ];
+
+        $comparisons = array_reverse($comparisons);
+
+        return response()->json($comparisons);
+    }
+
 
     private function prepareResultQuery(Question $question, $startTime = null, $endTime = null)
     {
-        $is_open = $question->question_type === 'open';
-        $query = $question->answers()
-            ->when(!$is_open, function ($query) {
-                return $query->join('choices', 'answers.choice_id', '=', 'choices.id')
-                    ->select('choices.choice_text as answer');
-            }, function ($query) {
-                return $query->select('open_answer as answer');
-            })
-            ->selectRaw('count(*) as count')
-            ->when($startTime, fn($query) => $query->where('answers.created_at', '>', $startTime))
-            ->when($endTime, fn($query) => $query->where('answers.created_at', '<=', $endTime))
-            ->groupBy($is_open ? 'open_answer' : 'choices.choice_text');
+        if ($question->question_type === 'choice') {
+            $query = $question->choices()
+                ->leftJoin('answers', function ($join) use ($question, $startTime, $endTime) {
+                    $join->on('answers.choice_id', '=', 'choices.id')
+                        ->where('answers.question_id', '=', $question->id);
+                    if ($startTime) {
+                        $join->where('answers.created_at', '>', $startTime);
+                    }
+                    if ($endTime) {
+                        $join->where('answers.created_at', '<=', $endTime);
+                    }
+                })
+                ->select('choices.choice_text as answer')
+                ->selectRaw('COUNT(answers.id) as count')
+                ->groupBy('choices.id');
+        } else {
+            $query = $question->answers()
+                ->select('open_answer as answer')
+                ->selectRaw('COUNT(*) as count')
+                ->when($startTime, fn($query) => $query->where('answers.created_at', '>', $startTime))
+                ->when($endTime, fn($query) => $query->where('answers.created_at', '<=', $endTime))
+                ->groupBy('open_answer');
+        }
 
         return $query;
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
 use App\Models\Question;
-use App\Models\QuestionClosure;
+use App\Models\VoteClosure;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,22 +53,5 @@ class QuestionController extends Controller
         $question = Auth::user()->questions()->findOrFail($id);
         $question->delete();
         return response()->json(['message' => 'Question deleted successfully.'], 204);
-    }
-
-
-    public function close(Request $request, string $id)
-    {
-        $validated = $request->validate([
-            'note' => 'nullable'
-        ]);
-
-        $question = Auth::user()->questions()->findOrFail($id);
-
-        $question_closure = QuestionClosure::create([
-            'question_id' => $question->id,
-            'note' => $validated['note']
-        ]);
-
-        return $question_closure;
     }
 }
