@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,9 +49,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function me(): User
+    public function me(): UserResource
     {
-        return Auth::user();
+        return new UserResource(Auth::user());
     }
 
     public function change_password(Request $request)

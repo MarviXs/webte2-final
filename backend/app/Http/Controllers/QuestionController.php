@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Http\Resources\QuestionAdminResource;
 use App\Http\Resources\QuestionResource;
 use App\Models\Question;
-use App\Models\VoteClosure;
 use App\Models\Subject;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
@@ -17,8 +17,17 @@ class QuestionController extends Controller
         return QuestionResource::collection(Auth::user()->questions);
     }
 
+    public function index_admin()
+    {
+        Gate::authorize('viewAny', Question::class);
+
+        return QuestionAdminResource::collection(Question::all());
+    }
+
     public function store(QuestionRequest $request): QuestionResource
     {
+        Gate::authorize('create', Question::class);
+
         $validated = $request->validated();
 
         $subject = Subject::firstOrCreate(['name' => $validated['subject']]);
@@ -28,17 +37,18 @@ class QuestionController extends Controller
         return new QuestionResource(Auth::user()->questions()->create($validated));
     }
 
-    public function show($id)
+    public function show(Question $question)
     {
-        $question = Auth::user()->questions()->findOrFail($id);
+        Gate::authorize('view', $question);
+
         return new QuestionResource($question);
     }
 
-    public function update(QuestionRequest $request, $id)
+    public function update(QuestionRequest $request, Question $question)
     {
-        $validated = $request->validated();
-        $question = Auth::user()->questions()->findOrFail($id);
+        Gate::authorize('update', $question);
 
+        $validated = $request->validated();
         $subject = Subject::firstOrCreate(['name' => $validated['subject']]);
         $questionData['subject_id'] = $subject->id;
 
@@ -46,9 +56,10 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        $question = Auth::user()->questions()->findOrFail($id);
+        Gate::authorize('delete', $question);
+
         $question->delete();
         return response()->json(['message' => 'Question deleted successfully.'], 204);
     }

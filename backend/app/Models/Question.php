@@ -58,4 +58,33 @@ class Question extends Model
 
         return $code;
     }
+
+    public static function prepareResultQuery(Question $question, $startTime = null, $endTime = null)
+    {
+        if ($question->question_type === 'choice') {
+            $query = $question->choices()
+                ->leftJoin('answers', function ($join) use ($question, $startTime, $endTime) {
+                    $join->on('answers.choice_id', '=', 'choices.id')
+                        ->where('answers.question_id', '=', $question->id);
+                    if ($startTime) {
+                        $join->where('answers.created_at', '>', $startTime);
+                    }
+                    if ($endTime) {
+                        $join->where('answers.created_at', '<=', $endTime);
+                    }
+                })
+                ->select('choices.choice_text as answer')
+                ->selectRaw('COUNT(answers.id) as count')
+                ->groupBy('choices.id');
+        } else {
+            $query = $question->answers()
+                ->select('open_answer as answer')
+                ->selectRaw('COUNT(*) as count')
+                ->when($startTime, fn($query) => $query->where('answers.created_at', '>', $startTime))
+                ->when($endTime, fn($query) => $query->where('answers.created_at', '<=', $endTime))
+                ->groupBy('open_answer');
+        }
+
+        return $query;
+    }
 }

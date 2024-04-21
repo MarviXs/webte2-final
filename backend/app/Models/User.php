@@ -24,6 +24,11 @@ class User extends Authenticatable implements JWTSubject
         'updated_at',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
