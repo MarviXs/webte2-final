@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Gate;
 class ChoiceController extends Controller
 {
 
+    /**
+     * Create a new choice for a question
+     */
     public function store(Request $request, $question_id): ChoiceResource
     {
         $validated = $request->validate([
@@ -26,6 +29,9 @@ class ChoiceController extends Controller
         return new ChoiceResource($choice);
     }
 
+    /**
+     * Update a choice
+     */
     public function update(Request $request, $question_id, $choice_id): ChoiceResource
     {
         $choice = Choice::findOrFail($choice_id);
@@ -40,6 +46,9 @@ class ChoiceController extends Controller
         return new ChoiceResource($choice);
     }
 
+    /**
+     * Delete a choice
+     */
     public function destroy($choice_id)
     {
         $choice = Choice::findOrFail($choice_id);

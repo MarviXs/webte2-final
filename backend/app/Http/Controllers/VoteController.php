@@ -12,12 +12,18 @@ use Illuminate\Support\Facades\Gate;
 
 class VoteController extends Controller
 {
+    /**
+     *  Get question using code
+     */
     public function show_question(string $code)
     {
         $question = Question::where('code', $code)->firstOrFail();
         return new QuestionResource($question);
     }
 
+    /**
+     *  Answer a question
+     */
     public function answer(Request $request, string $code)
     {
         $question = Question::where('code', $code)->firstOrFail();
@@ -47,6 +53,9 @@ class VoteController extends Controller
         return response()->json(['message' => 'Answer submitted successfully.']);
     }
 
+    /**
+     *  Close voting for a question
+     */
     public function close(Request $request, Question $question)
     {
         Gate::authorize('close', $question);
@@ -63,6 +72,9 @@ class VoteController extends Controller
         return new VoteClosureResource($vote_closure);
     }
 
+    /**
+     *  Get closures for a question
+     */
     public function closures(Request $request, Question $question)
     {
         Gate::authorize('view_closures', $question);
@@ -71,6 +83,7 @@ class VoteController extends Controller
 
 
     /**
+     * Get latest voting results
      * @response array{ "results": array{ "answer": "Yes", "count": 2 } }
      */
     public function result(string $code)
@@ -92,6 +105,7 @@ class VoteController extends Controller
 
 
     /**
+     * Get voting results for a specific closure
      * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }
      */
     public function result_archive(string $question_id, $closure_id)
@@ -118,6 +132,7 @@ class VoteController extends Controller
 
 
     /**
+     * Get voting results for all closures
      * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[]
      */
     public function result_compare(string $question_id)

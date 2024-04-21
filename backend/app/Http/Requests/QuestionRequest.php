@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class QuestionRequest extends FormRequest
 {
@@ -13,11 +15,17 @@ class QuestionRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        $rules = [
             'question_text' => 'required|string',
             'question_type' => 'required|string|in:choice,open',
             'is_active' => 'boolean',
             'subject' => 'required|string',
         ];
+
+        if (Auth::user() && Auth::user()->isAdmin()) {
+            $rules['owner_id'] = ['nullable', 'uuid', Rule::exists('users', 'id')];
+        }
+
+        return $rules;
     }
 }

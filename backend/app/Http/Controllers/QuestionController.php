@@ -12,11 +12,17 @@ use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
+    /**
+     * List all questions
+     */
     public function index()
     {
         return QuestionResource::collection(Auth::user()->questions);
     }
 
+    /**
+     * List all questions for admin
+     */
     public function index_admin()
     {
         Gate::authorize('viewAny', Question::class);
@@ -24,6 +30,9 @@ class QuestionController extends Controller
         return QuestionAdminResource::collection(Question::all());
     }
 
+    /**
+     * Create a new question
+     */
     public function store(QuestionRequest $request): QuestionResource
     {
         Gate::authorize('create', Question::class);
@@ -34,9 +43,22 @@ class QuestionController extends Controller
         $validated['subject_id'] = $subject->id;
         $validated['code'] = Question::generateCode();
 
-        return new QuestionResource(Auth::user()->questions()->create($validated));
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+            $validated['owner_id'] = $validated['owner_id'] ?? $user->id;
+        } else {
+            $validated['owner_id'] = $user->id;
+        }
+
+        $question = Question::create($validated);
+
+        return new QuestionResource($question);
     }
 
+    /**
+     * Get a question
+     */
     public function show(Question $question)
     {
         Gate::authorize('view', $question);
@@ -44,6 +66,9 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
+    /**
+     * Update a question
+     */
     public function update(QuestionRequest $request, Question $question)
     {
         Gate::authorize('update', $question);
@@ -56,6 +81,9 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
+    /**
+     * Delete a question
+     */
     public function destroy(Question $question)
     {
         Gate::authorize('delete', $question);

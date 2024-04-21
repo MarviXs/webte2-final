@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user
+     */
     public function register(Request $request)
     {
         $registerUserData = $request->validate([
@@ -30,6 +33,9 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Login the user
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -49,11 +55,17 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Get the current user
+     */
     public function me(): UserResource
     {
         return new UserResource(Auth::user());
     }
 
+    /**
+     * Change the user's password
+     */
     public function change_password(Request $request)
     {
         // Validate the request data
