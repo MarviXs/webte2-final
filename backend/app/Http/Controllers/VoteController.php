@@ -30,25 +30,31 @@ class VoteController extends Controller
 
         // For scramble docs
         $request->validate([
-            'choice_id' => 'nullable',
+            'choices' => 'nullable',
             'open_answer' => 'nullable',
         ]);
 
-        if ($question->question_type === 'choice') {
+        if ($question->question_type === 'multiple_choice' || $question->question_type === 'single_choice') {
             $validated = $request->validate([
-                'choice_id' => 'required'
+                'choices' => 'required|array',
             ]);
-            $question->choices()->findOrFail($validated['choice_id']);
+
+            $choices_ids = $validated['choices'];
+            $choices = $question->choices()->whereIn('id', $choices_ids)->get();
+
+            $question->answers()->createMany($choices->map(function ($choice) {
+                return ['choice_id' => $choice->id];
+            })->toArray());
+
         } else {
             $validated = $request->validate([
                 'open_answer' => 'required',
             ]);
-        }
 
-        $question->answers()->create([
-            'choice_id' => $question->question_type === 'choice' ? $validated['choice_id'] : null,
-            'open_answer' => $question->question_type === 'open' ? $validated['open_answer'] : null,
-        ]);
+            $question->answers()->create([
+                'open_answer' => $validated['open_answer']
+            ]);
+        }
 
         return response()->json(['message' => 'Answer submitted successfully.']);
     }

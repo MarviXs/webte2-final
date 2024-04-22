@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
-    <div class="full-width row items-center justify-center">
-      <q-form greedy @submit="submitForm" class="column col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 q-pa-lg container-dashboard shadow">
+    <div class="full-width row items-center justify-center q-pt-lg">
+      <q-form greedy @submit="submitForm" class="column col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 q-pa-lg container-dashboard">
         <q-input
           v-model="voteCode"
           label="Vote code"

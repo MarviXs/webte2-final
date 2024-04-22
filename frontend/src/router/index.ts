@@ -10,9 +10,21 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'home',
-          component: () => import('@/views/VoteCodeEnterView.vue'),
-        }
+          name: 'vote-code-enter',
+          component: () => import('@/views/VoteCodeEnterView.vue')
+        },
+        {
+          path: 'questions',
+          name: 'questions',
+          component: () => import('@/views/QuestionListView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
+          path: 'questions/create',
+          name: 'questions-create',
+          component: () => import('@/views/QuestionCreateView.vue'),
+          meta: { requiresAuth: true }
+        },
       ]
     },
     {
@@ -22,7 +34,7 @@ const router = createRouter({
     {
       path: '/register',
       component: () => import('@/views/auth/RegisterView.vue')
-    },
+    }
   ]
 })
 

@@ -21,9 +21,9 @@ class QuestionSeeder extends Seeder
         ]);
 
         $question = $user->questions()->create([
-            'question_type' => 'choice',
+            'question_type' => 'single_choice',
             'question_text' => 'Do you like Laravel?',
-            'code' => 'abcde',
+            'code' => 'ABCDE',
             'is_active' => true,
             'subject_id' => $subject->id,
         ]);
@@ -42,7 +42,7 @@ class QuestionSeeder extends Seeder
 
         $user2 = User::where('email', 'user2@example.com')->firstOrFail();
         $question = $user2->questions()->create([
-            'question_type' => 'choice',
+            'question_type' => 'single_choice',
             'question_text' => 'Do you like PHP?',
             'code' => '67890',
             'is_active' => true,
@@ -52,7 +52,6 @@ class QuestionSeeder extends Seeder
             ['choice_text' => 'Yes'],
             ['choice_text' => 'No'],
         ]);
-
 
 
     }

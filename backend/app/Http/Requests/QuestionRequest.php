@@ -17,9 +17,9 @@ class QuestionRequest extends FormRequest
     {
         $rules = [
             'question_text' => 'required|string',
-            'question_type' => 'required|string|in:choice,open',
+            'question_type' => 'required|string|in:single_choice,multiple_choice,open',
             'is_active' => 'boolean',
-            'subject' => 'required|string',
+            'subject' => 'nullable|string',
         ];
 
         if (Auth::user() && Auth::user()->isAdmin()) {

@@ -17,8 +17,8 @@ class QuestionAdminResource extends JsonResource
             'is_active' => $this->is_active,
             'subject' => $this->subject->name,
             'choices' => ChoiceResource::collection($this->choices),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->timestamp,
+            'updated_at' => $this->updated_at->timestamp,
             'owner' => new UserResource($this->owner),
         ];
     }

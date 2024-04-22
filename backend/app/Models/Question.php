@@ -48,7 +48,7 @@ class Question extends Model
     public static function generateCode($length = 5): string
     {
         do {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
             $randomString = '';
             for ($i = 0; $i < $length; $i++) {
@@ -62,7 +62,7 @@ class Question extends Model
 
     public static function prepareResultQuery(Question $question, $startTime = null, $endTime = null)
     {
-        if ($question->question_type === 'choice') {
+        if ($question->question_type === 'single_choice' || $question->question_type === 'multiple_choice') {
             $query = $question->choices()
                 ->leftJoin('answers', function ($join) use ($question, $startTime, $endTime) {
                     $join->on('answers.choice_id', '=', 'choices.id')

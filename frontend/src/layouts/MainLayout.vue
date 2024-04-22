@@ -10,6 +10,9 @@
         <div class="drawer-title">Final assignment</div>
         <div class="links">
           <side-menu-route to="/" :exact="true" label="Vote" :icon="mdiTextBoxEditOutline" />
+          <div v-if="authStore.isAuthenticated">
+            <side-menu-route to="/questions" label="Questions" :icon="mdiChatQuestionOutline" />
+          </div>
         </div>
         <q-separator class="q-my-md" ></q-separator>
         <div v-if="!authStore.isAuthenticated">
@@ -29,7 +32,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { mdiAccount, mdiAccountPlus, mdiLogout, mdiMenu, mdiTextBoxEditOutline } from '@quasar/extras/mdi-v7'
+import { mdiAccount, mdiAccountPlus, mdiChatQuestionOutline, mdiLogout, mdiMenu, mdiTextBoxEditOutline } from '@quasar/extras/mdi-v7'
 import SideMenuRoute from '@/components/SideMenuRoute.vue'
 import SideMenuButton from '@/components/SideMenuButton.vue'
 import { useAuthStore } from '@/stores/auth-store'

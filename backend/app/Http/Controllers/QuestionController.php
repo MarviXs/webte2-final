@@ -39,8 +39,13 @@ class QuestionController extends Controller
 
         $validated = $request->validated();
 
-        $subject = Subject::firstOrCreate(['name' => $validated['subject']]);
-        $validated['subject_id'] = $subject->id;
+        if (!empty($validated['subject'])) {
+            $subject = Subject::firstOrCreate(['name' => $validated['subject']]);
+            $validated['subject_id'] = $subject->id;
+        } else {
+            $validated['subject_id'] = null;
+        }
+
         $validated['code'] = Question::generateCode();
 
         $user = Auth::user();

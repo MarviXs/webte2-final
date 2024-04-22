@@ -15,10 +15,10 @@ class QuestionResource extends JsonResource
             'question_type' => $this->question_type,
             'code' => $this->code,
             'is_active' => $this->is_active,
-            'subject' => $this->subject->name,
+            'subject' => $this->subject->name ?? null,
             'choices' => ChoiceResource::collection($this->choices),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->timestamp,
+            'updated_at' => $this->updated_at->timestamp,
         ];
     }
 }
