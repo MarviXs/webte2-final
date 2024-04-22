@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         JsonResource::withoutWrapping();
 
         Scramble::extendOpenApi(function (OpenApi $openApi) {
-            $openApi->secure(SecurityScheme::http('bearer', 'JWT'));
+            $openApi->secure(SecurityScheme::http('bearer', 'Token'));
         });
     }
 }

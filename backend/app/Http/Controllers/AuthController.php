@@ -17,18 +17,23 @@ class AuthController extends Controller
     {
         $registerUserData = $request->validate([
             'email' => 'required|string|email|unique:users,email',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'password' => 'required|min:6'
         ]);
 
         $user = User::create([
             'email' => $registerUserData['email'],
+            'first_name' => $registerUserData['first_name'],
+            'last_name' => $registerUserData['last_name'],
             'password' => Hash::make($registerUserData['password']),
             'role' => 'user'
         ]);
 
-        $token = Auth::login($user);
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
-            'jwt' => $token,
+            'token' => $token,
             'message' => 'User Created',
         ]);
     }
@@ -44,23 +49,38 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
+        if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 401);
         }
+
+        $user = $request->user();
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
-            'jwt' => $token,
+            'token' => $token,
+        ]);
+    }
+
+
+    /**
+     * Logout
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Logged out',
         ]);
     }
 
     /**
      * Get the current user
      */
-    public function me(): UserResource
+    public function me(Request $request): UserResource
     {
-        return new UserResource(Auth::user());
+        return new UserResource($request->user());
     }
 
     /**

@@ -22,7 +22,7 @@ class AuthTest extends TestCase
                 'message' => 'User Created',
             ])
             ->assertJsonStructure([
-                'jwt',
+                'token',
             ]);
 
         $this->assertDatabaseHas('users', [
@@ -59,7 +59,7 @@ class AuthTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonStructure([
-                'jwt',
+                'token',
             ]);
     }
 
@@ -85,7 +85,7 @@ class AuthTest extends TestCase
             'password' => bcrypt('oldpassword'),
         ]);
 
-        $this->actingAs($user, 'api');
+        $this->actingAs($user, 'sanctum');
 
         $response = $this->postJson('/auth/change-password', [
             'current_password' => 'oldpassword',
@@ -105,7 +105,7 @@ class AuthTest extends TestCase
             'password' => bcrypt('oldpassword'),
         ]);
 
-        $this->actingAs($user, 'api');
+        $this->actingAs($user, 'sanctum');
 
         $response = $this->postJson('/auth/change-password', [
             'current_password' => 'wrongpassword',
@@ -122,7 +122,7 @@ class AuthTest extends TestCase
             'password' => bcrypt('password123'),
         ]);
 
-        $this->actingAs($user, 'api');
+        $this->actingAs($user, 'sanctum');
 
         $response = $this->getJson('/auth/me');
 

@@ -1,0 +1,33 @@
+{
+  "global": {},
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "login": {
+      "label": "Login",
+      "login_btn": "Log in",
+      "no_account": "Don't have an account?",
+      "sign_up": "Sign Up",
+      "toasts": {
+        "login_failed": "Login failed!",
+        "login_success": "Login successful!"
+      }
+    },
+    "register": {
+      "label": "Register",
+      "register_btn": "Register",
+      "have_account": "Already have an account?",
+      "login": "Log in",
+      "toasts": {
+        "register_failed": "Register failed!",
+        "register_success": "Register successful!"
+      }
+    },
+    "toasts": {
+      "logout_success": "Logout successful!"
+    },
+    "rules": {
+      "email_invalid": "Please enter a valid email address"
+    }
+  }
+}

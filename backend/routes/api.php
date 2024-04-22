@@ -12,16 +12,17 @@ Route::get('/', function () {
 });
 
 Route::prefix('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register']);
 
-    Route::middleware('auth:api')->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/change-password', [AuthController::class, 'change_password']);
+        Route::post('/logout', [AuthController::class, 'logout']);
     });
 });
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('questions')->group(function () {
         Route::get('/', [QuestionController::class, 'index']);
         Route::post('/', [QuestionController::class, 'store']);

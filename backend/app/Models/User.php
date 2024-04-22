@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use HasUuids, Notifiable;
+    use HasApiTokens, HasUuids, Notifiable;
 
     protected $fillable = [
         'email',
+        'first_name',
+        'last_name',
         'password',
         'role',
     ];
@@ -27,16 +29,6 @@ class User extends Authenticatable implements JWTSubject
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
-    }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 
     protected function casts(): array

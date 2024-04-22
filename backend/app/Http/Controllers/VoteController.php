@@ -84,7 +84,7 @@ class VoteController extends Controller
 
     /**
      * Get latest voting results
-     * @response array{ "results": array{ "answer": "Yes", "count": 2 } }
+     * @response array{ "answer": "Yes", "count": 2 }[]
      */
     public function result(string $code)
     {
@@ -96,17 +96,13 @@ class VoteController extends Controller
         $query = Question::prepareResultQuery($question, $startTime);
         $results = $query->get()->toArray();
 
-        $response = [
-            'results' => $results,
-        ];
-
-        return response()->json($response);
+        return response()->json($results);
     }
 
 
     /**
      * Get voting results for a specific closure
-     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }
+     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[]
      */
     public function result_archive(string $question_id, $closure_id)
     {
