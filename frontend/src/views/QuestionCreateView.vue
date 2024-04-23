@@ -1,29 +1,27 @@
 <template>
-  <div class="row justify-center">
-    <PageLayout
-      title="Create Question"
-      previous-title="Questions"
-      previous-route="/questions"
-      class="full-width"
-      style="max-width: 900px"
-    >
-      <template #actions>
-        <q-btn
-          class="shadow"
-          color="primary"
-          label="Create"
-          @click="createQuestion"
-          :loading="creatingQuestion"
-          type="submit"
-          unelevated
-          size="15px"
-        />
-      </template>
-      <div>
-        <QuestionForm ref="questionForm" v-model:question="question" v-model:choices="choices" />
-      </div>
-    </PageLayout>
-  </div>
+  <PageLayout
+    title="Create Question"
+    previous-title="Questions"
+    previous-route="/questions"
+    class="full-width"
+    max-width="900px"
+  >
+    <template #actions>
+      <q-btn
+        class="shadow"
+        color="primary"
+        label="Create"
+        @click="createQuestion"
+        :loading="creatingQuestion"
+        type="submit"
+        unelevated
+        size="15px"
+      />
+    </template>
+    <div>
+      <QuestionForm ref="questionForm" v-model:question="question" v-model:choices="choices" />
+    </div>
+  </PageLayout>
 </template>
 
 <script setup lang="ts">
@@ -47,7 +45,7 @@ const question = ref<QuestionRequest>({
   is_active: true
 })
 
-const choices = ref<ChoiceRequest[]>([{ choice_text: '', order: 1}])
+const choices = ref<ChoiceRequest[]>([{ choice_text: '', order: 1 }])
 
 const questionForm = ref()
 

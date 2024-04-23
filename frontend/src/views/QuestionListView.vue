@@ -39,6 +39,17 @@
 
           <template #body-cell-actions="propsActions">
             <q-td auto-width :props="propsActions">
+
+              <q-btn
+                :icon="mdiChartBar"
+                color="gray-btn"
+                flat
+                round
+                :to="`/questions/${propsActions.row.code}/results`"
+              >
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Results </q-tooltip>
+              </q-btn>
+
               <!-- Edit button -->
               <q-btn
                 :icon="mdiPencil"
@@ -73,7 +84,7 @@ import PageLayout from '@/layouts/PageLayout.vue'
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import type { QTableProps } from 'quasar'
-import { mdiPencil, mdiPlus, mdiTrashCan } from '@quasar/extras/mdi-v7'
+import { mdiChartBar, mdiPencil, mdiPlus, mdiTrashCan } from '@quasar/extras/mdi-v7'
 import type { Question } from '@/models/Question'
 import QuestionService from '@/services/QuestionService'
 

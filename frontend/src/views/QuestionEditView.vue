@@ -1,23 +1,27 @@
 <template>
-  <div class="row justify-center">
-    <PageLayout title="Edit Question" previous-title="Questions" previous-route="/questions" class="full-width" style="max-width: 900px">
-      <template #actions>
-        <q-btn
-          class="shadow"
-          color="primary"
-          label="Update"
-          @click="updateQuestion"
-          :loading="updatingQuestion"
-          type="submit"
-          unelevated
-          size="15px"
-        />
-      </template>
-      <div v-if="question">
-        <QuestionForm ref="questionForm" v-model:question="question" v-model:choices="localChoices" />
-      </div>
-    </PageLayout>
-  </div>
+  <PageLayout
+    title="Edit Question"
+    previous-title="Questions"
+    previous-route="/questions"
+    class="full-width"
+    max-width="900px"
+  >
+    <template #actions>
+      <q-btn
+        class="shadow"
+        color="primary"
+        label="Update"
+        @click="updateQuestion"
+        :loading="updatingQuestion"
+        type="submit"
+        unelevated
+        size="15px"
+      />
+    </template>
+    <div v-if="question">
+      <QuestionForm ref="questionForm" v-model:question="question" v-model:choices="localChoices" />
+    </div>
+  </PageLayout>
 </template>
 
 <script setup lang="ts">
@@ -37,7 +41,6 @@ const route = useRoute()
 const question = ref<Question>()
 const localChoices = ref<ChoiceRequest[]>([])
 
-
 async function getQuestion() {
   const questionId = route.params.id.toString()
   try {
@@ -50,14 +53,13 @@ async function getQuestion() {
 }
 getQuestion()
 
-
 const questionForm = ref()
 const updatingQuestion = ref(false)
 async function updateQuestion() {
   if ((await questionForm.value.validate()) === false) {
     return
   }
-  if(!question.value) {
+  if (!question.value) {
     return
   }
 

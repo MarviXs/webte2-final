@@ -20,6 +20,10 @@ function required(): ValidationRule {
   return (val: valType) => (val?.toString() || '').length > 0 || 'This field is required'
 }
 
+function requiredSingleOption(): ValidationRule {
+  return (val: Array<valType>) => val.length > 0 || 'This field is required'
+}
+
 function minLength(min: number): ValidationRule {
   return (val: valType) =>
     (val?.toString() || '').length >= min || `This field must be at least ${min} characters long`
@@ -41,4 +45,4 @@ function isEmail(): ValidationRule {
     'Email must be valid'
 }
 
-export { isFormValid, required, minLength, maxLength, isNumber, isEmail }
+export { isFormValid, required, minLength, maxLength, isNumber, isEmail, requiredSingleOption }

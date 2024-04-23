@@ -31,6 +31,22 @@ const router = createRouter({
           component: () => import('@/views/QuestionEditView.vue'),
           meta: { requiresAuth: true }
         },
+        {
+          path: ':code(\\w{5})',
+          name: 'vote-question',
+          component: () => import('@/views/VoteQuestionView.vue')
+        },
+        {
+          path: 'questions/:code(\\w{5})/results',
+          name: 'vote-results',
+          component: () => import('@/views/VoteLatestResultsView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
+          path: ':code(\\w{5})/results',
+          name: 'vote-public-results',
+          component: () => import('@/views/VotePublicLatestResultsView.vue')
+        },
       ]
     },
     {

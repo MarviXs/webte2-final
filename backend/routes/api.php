@@ -40,8 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('vote')->group(function () {
-        Route::get('/{question_id}/result-archive/{closure_id}', [VoteController::class, 'result_archive']);
-        Route::get('/{question_id}/result-comparison/', [VoteController::class, 'result_compare']);
+        Route::get('/{question_id}/results-archive/{closure_id}', [VoteController::class, 'result_archive']);
+        Route::get('/{question_id}/results-comparison/', [VoteController::class, 'result_compare']);
     });
 
     Route::prefix('admin')->group(function () {
@@ -59,8 +59,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // Public vote routes
 Route::prefix('vote')->group(function () {
-    Route::post('/{code}', [VoteController::class, 'show_question']);
+    Route::get('/{code}', [VoteController::class, 'show_question']);
     Route::post('/{code}/answer', [VoteController::class, 'answer']);
-    Route::get('/{code}/result', [VoteController::class, 'result']);
+    Route::get('/{code}/results', [VoteController::class, 'result']);
 });
 

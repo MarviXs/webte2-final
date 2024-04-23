@@ -1,7 +1,11 @@
 <template>
   <PageLayout>
     <div class="full-width row items-center justify-center q-pt-lg">
-      <q-form greedy @submit="submitForm" class="column col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 q-pa-lg container-dashboard">
+      <q-form
+        greedy
+        @submit="submitCode"
+        class="column col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 q-pa-lg container-dashboard"
+      >
         <q-input
           v-model="voteCode"
           label="Vote code"
@@ -19,6 +23,7 @@
           label="Next"
           type="submit"
           size="1rem"
+          :loading="voteStore.questionLoading"
           no-caps
           :icon-right="mdiArrowRight"
           unelevated
@@ -33,11 +38,23 @@ import PageLayout from '@/layouts/PageLayout.vue'
 import { ref } from 'vue'
 import { required, minLength, maxLength } from '@/utils/form-validation'
 import { mdiArrowRight, mdiPound } from '@quasar/extras/mdi-v7'
+import { useVoteStore } from '@/stores/vote-store';
+import { toast } from 'vue3-toastify';
+import { useRouter } from 'vue-router';
 
 const voteCode = ref('')
+const voteStore = useVoteStore()
+const router = useRouter()
 
-async function submitForm() {
-  console.log('submitting form')
+async function submitCode() {
+  try {
+    await voteStore.getQuestionByCode(voteCode.value)
+    router.push(`/${voteStore.question?.code}`)
+  }
+  catch (error) {
+    toast.error('Question not found')
+  }
+  
 }
 </script>
 

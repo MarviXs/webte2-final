@@ -17,7 +17,7 @@ class VoteController extends Controller
      */
     public function show_question(string $code)
     {
-        $question = Question::where('code', $code)->firstOrFail();
+        $question = Question::where('code', $code)->where('is_active', true)->firstOrFail();
         return new QuestionResource($question);
     }
 
@@ -30,7 +30,10 @@ class VoteController extends Controller
 
         // For scramble docs
         $request->validate([
-            'choices' => 'nullable',
+            /**
+             * @var string[] $choices
+             */
+            'choices' => 'nullable|array',
             'open_answer' => 'nullable',
         ]);
 
@@ -90,7 +93,7 @@ class VoteController extends Controller
 
     /**
      * Get latest voting results
-     * @response array{ "answer": "Yes", "count": 2 }[]
+     * @response array{ "question_type": "single_choice", "results": array{ "answer": "Yes", "count": 2 }[] }
      */
     public function result(string $code)
     {
@@ -102,13 +105,18 @@ class VoteController extends Controller
         $query = Question::prepareResultQuery($question, $startTime);
         $results = $query->get()->toArray();
 
-        return response()->json($results);
+        $response = [
+            'question_type' => $question->question_type,
+            'answers' => $results
+        ];
+
+        return response()->json($response);
     }
 
 
     /**
      * Get voting results for a specific closure
-     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[]
+     * @response array{ "closure": VoteClosureResource, "question_type": "single_choice", "results": array{ "answer": "Yes", "count": 2 } }[]
      */
     public function result_archive(string $question_id, $closure_id)
     {
@@ -126,16 +134,16 @@ class VoteController extends Controller
 
         $response = [
             'closure' => new VoteClosureResource($closure),
-            'results' => $results,
+            'question_type' => $question->question_type,
+            'answers' => $results,
         ];
 
         return response()->json($response);
     }
 
-
     /**
      * Get voting results for all closures
-     * @response array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[]
+     * @response array{ "question_type": "single_choice", "comparisons": array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[] }
      */
     public function result_compare(string $question_id)
     {
@@ -166,12 +174,15 @@ class VoteController extends Controller
         $currentResults = Question::prepareResultQuery($question, $startTime, now())->get();
         $comparisons[] = [
             'closure' => null,
-            'results' => $currentResults,
+            'answers' => $currentResults,
         ];
-
         $comparisons = array_reverse($comparisons);
 
-        return response()->json($comparisons);
+        $response = [
+            'question_type' => $question->question_type,
+            'comparisons' => $comparisons,
+        ];
+        return response()->json($response);
     }
 
 
