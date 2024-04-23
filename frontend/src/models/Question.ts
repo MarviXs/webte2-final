@@ -22,6 +22,7 @@ interface QuestionRequest {
   id?: string
   question_text: string
   question_type: QuestionType
+  choices: Choice[]
   is_active: boolean
   subject?: string
 }

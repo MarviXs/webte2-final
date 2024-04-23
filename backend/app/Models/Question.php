@@ -20,6 +20,10 @@ class Question extends Model
         'subject_id',
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');

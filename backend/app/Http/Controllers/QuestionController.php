@@ -17,7 +17,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return QuestionResource::collection(Auth::user()->questions);
+        return QuestionResource::collection(Auth::user()->questions->sortByDesc('updated_at'));
     }
 
     /**
@@ -79,12 +79,36 @@ class QuestionController extends Controller
         Gate::authorize('update', $question);
 
         $validated = $request->validated();
-        $subject = Subject::firstOrCreate(['name' => $validated['subject']]);
-        $questionData['subject_id'] = $subject->id;
 
-        $question->update($questionData);
+        if (!empty($validated['subject'])) {
+            $newSubject = Subject::firstOrCreate(['name' => $validated['subject']]);
+            $validated['subject_id'] = $newSubject->id;
+        }
+        else {
+            $validated['subject_id'] = null;
+        }
+        $oldSubjectId = $question->subject_id;
+
+        $question->update($validated);
+
+        $update_choices = $validated['choices'] ?? [];
+        foreach ($update_choices as $choice) {
+
+            if(empty($choice['choice_text'])) {
+                $question->choices()->where('id', $choice['id'])->delete();
+            }
+            else {
+                $question->choices()->updateOrCreate(['id' => $choice['id']], $choice);
+            }
+        }
+
+        if (!Question::where('subject_id', $oldSubjectId)->exists()) {
+            Subject::where('id', $oldSubjectId)->delete();
+        }
+
         return new QuestionResource($question);
     }
+
 
     /**
      * Delete a question

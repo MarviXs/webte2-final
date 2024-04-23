@@ -1,6 +1,12 @@
 <template>
   <div class="row justify-center">
-    <PageLayout title="Create Question" class="full-width" style="max-width: 900px">
+    <PageLayout
+      title="Create Question"
+      previous-title="Questions"
+      previous-route="/questions"
+      class="full-width"
+      style="max-width: 900px"
+    >
       <template #actions>
         <q-btn
           class="shadow"
@@ -13,7 +19,7 @@
           size="15px"
         />
       </template>
-      <div class="q-pa-lg container-dashboard">
+      <div>
         <QuestionForm ref="questionForm" v-model:question="question" v-model:choices="choices" />
       </div>
     </PageLayout>
@@ -37,10 +43,11 @@ const router = useRouter()
 const question = ref<QuestionRequest>({
   question_text: '',
   question_type: QuestionType.SINGLE_CHOICE,
+  choices: [],
   is_active: true
 })
 
-const choices = ref<ChoiceRequest[]>([{ choice_text: '' }])
+const choices = ref<ChoiceRequest[]>([{ choice_text: '', order: 1}])
 
 const questionForm = ref()
 

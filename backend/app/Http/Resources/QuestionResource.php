@@ -16,7 +16,7 @@ class QuestionResource extends JsonResource
             'code' => $this->code,
             'is_active' => $this->is_active,
             'subject' => $this->subject->name ?? null,
-            'choices' => ChoiceResource::collection($this->choices),
+            'choices' => ChoiceResource::collection($this->choices->sortBy('order')),
             'created_at' => $this->created_at->timestamp,
             'updated_at' => $this->updated_at->timestamp,
         ];

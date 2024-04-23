@@ -18,6 +18,7 @@ class ChoiceController extends Controller
     {
         $validated = $request->validate([
             'choice_text' => 'required|string',
+            'order' => 'integer',
         ]);
 
         $question = Question::findOrFail($question_id);
@@ -39,6 +40,7 @@ class ChoiceController extends Controller
 
         $validated = $request->validate([
             'choice_text' => 'required|string',
+            'order' => 'integer',
         ]);
 
         $choice->update($validated);

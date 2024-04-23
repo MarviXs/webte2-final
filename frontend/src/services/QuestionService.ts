@@ -21,6 +21,13 @@ class QuestionService {
     })
   }
 
+  async updateQuestion(id: string, question: QuestionRequest): Promise<Question> {
+    return await api(`/questions/${id}`, {
+      method: 'PUT',
+      body: question,
+    })
+  }
+
   async deleteQuestion(id: string): Promise<void> {
     await api(`/questions/${id}`, {
       method: 'DELETE',

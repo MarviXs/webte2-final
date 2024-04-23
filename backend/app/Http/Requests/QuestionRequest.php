@@ -20,6 +20,10 @@ class QuestionRequest extends FormRequest
             'question_type' => 'required|string|in:single_choice,multiple_choice,open',
             'is_active' => 'boolean',
             'subject' => 'nullable|string',
+            'choices' => 'nullable|array',
+            'choices.*.id' => 'required|uuid|exists:choices,id',
+            'choices.*.choice_text' => 'nullable|string',
+            'choices.*.order' => 'nullable|integer',
         ];
 
         if (Auth::user() && Auth::user()->isAdmin()) {

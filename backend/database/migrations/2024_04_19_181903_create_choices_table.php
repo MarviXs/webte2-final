@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('choices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('choice_text');
+            $table->integer('order')->default(0);
             $table->timestamps();
 
             $table->foreignUuid('question_id')->constrained()->cascadeOnDelete();

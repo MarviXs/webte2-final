@@ -13,6 +13,7 @@ class Choice extends Model
     protected $fillable = [
         'choice_text',
         'question_id',
+        'order',
     ];
 
     public function question(): BelongsTo

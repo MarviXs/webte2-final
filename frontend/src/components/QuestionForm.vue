@@ -1,45 +1,57 @@
 <template>
   <q-form ref="form" class="gap column" greedy>
-    <q-checkbox dense v-model="question.is_active" label="Active" />
-    <q-input class="q-mb-xs" label="Subject" v-model="question.subject" />
-    <q-input
-      autogrow
-      label="Question Title"
-      v-model="question.question_text"
-      :rules="[required()]"
-    />
-    <q-select
-      label="Question type"
-      v-model="question.question_type"
-      map-options
-      emit-value
-      :options="questionTypes"
-    >
-      <template v-slot:selected-item="scope">
-        <div class="row items-center q-py-sm">
-          <q-icon size="1.5rem" color="grey-9" class="q-mr-sm" :name="scope.opt.icon" />
-          <div>{{ scope.opt.label }}</div>
-        </div>
-      </template>
+    <div class="row gap-row items-center container-dashboard q-pa-lg">
+      <q-input class="col-grow" label="Subject" v-model="question.subject" />
+      <q-checkbox dense v-model="question.is_active" label="Active" left-label />
+    </div>
+    <div class="container-dashboard q-pa-lg q-mt-lg">
+      <div class="row gap-row items-center">
+        <q-input
+          autogrow
+          class="col-grow"
+          label="Question Title"
+          v-model="question.question_text"
+          :rules="[required()]"
+        />
+        <q-select
+          label="Question type"
+          v-model="question.question_type"
+          style="min-width: 200px"
+          class="col-12 col-sm-auto"
+          map-options
+          :rules="[required()]"
+          emit-value
+          :options="questionTypes"
+        >
+          <template v-slot:selected-item="scope">
+            <div class="row items-center">
+              <q-icon size="1.25rem" color="grey-9" class="q-mr-sm" :name="scope.opt.icon" />
+              <div>{{ scope.opt.label }}</div>
+            </div>
+          </template>
 
-      <template v-slot:option="scope">
-        <q-item clickable="row items-center" v-bind="scope.itemProps">
-          <q-item-section avatar>
-            <q-icon class="q-mr-md" color="grey-9" size="1.5rem" :name="scope.opt.icon" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ scope.opt.label }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </template>
-    </q-select>
-    <ChoiceForm
-      v-if="
-        question.question_type === QuestionType.SINGLE_CHOICE ||
-        question.question_type === QuestionType.MULTIPLE_CHOICE
-      "
-      v-model:localChoices="localChoices"
-    />
+          <template v-slot:option="scope">
+            <q-item clickable="row items-center" v-bind="scope.itemProps">
+              <q-item-section avatar>
+                <q-icon class="q-mr-md" color="grey-9" size="1.5rem" :name="scope.opt.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ scope.opt.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </template>
+        </q-select>
+      </div>
+
+      <ChoiceForm
+        v-if="
+          question.question_type === QuestionType.SINGLE_CHOICE ||
+          question.question_type === QuestionType.MULTIPLE_CHOICE
+        "
+        v-model:local-choices="localChoices"
+        v-model:choices="question.choices"
+      />
+    </div>
   </q-form>
 </template>
 
@@ -78,5 +90,9 @@ defineExpose({ validate })
 <style scoped>
 .gap {
   gap: 0.5rem;
+}
+
+.gap-row {
+  gap: 2rem;
 }
 </style>

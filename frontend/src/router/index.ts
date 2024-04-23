@@ -25,6 +25,12 @@ const router = createRouter({
           component: () => import('@/views/QuestionCreateView.vue'),
           meta: { requiresAuth: true }
         },
+        {
+          path: 'questions/:id/edit',
+          name: 'questions-edit',
+          component: () => import('@/views/QuestionEditView.vue'),
+          meta: { requiresAuth: true }
+        },
       ]
     },
     {

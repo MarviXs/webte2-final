@@ -31,12 +31,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{question}', [QuestionController::class, 'destroy']);
         Route::post('/{question}/close', [VoteController::class, 'close']);
         Route::get('/{question}/closures', [VoteController::class, 'closures']);
+        Route::post('/{question}/choices', [ChoiceController::class, 'store']);
+    });
 
-        Route::prefix('{question}/choices')->group(function () {
-            Route::post('/', [ChoiceController::class, 'store']);
-            Route::put('/{choice_id}', [ChoiceController::class, 'update']);
-            Route::delete('/{choice_id}', [ChoiceController::class, 'destroy']);
-        });
+    Route::prefix('choices')->group(function () {
+        Route::put('/{choice_id}', [ChoiceController::class, 'update']);
+        Route::delete('/{choice_id}', [ChoiceController::class, 'destroy']);
     });
 
     Route::prefix('vote')->group(function () {

@@ -8,6 +8,12 @@ class ChoiceService {
       body: choice
     })
   }
+
+  async deleteChoice(choice_id: string): Promise<void> {
+    return await api(`/choices/${choice_id}`, {
+      method: 'DELETE'
+    })
+  }
 }
 
 export default new ChoiceService()
