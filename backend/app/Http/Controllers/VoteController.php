@@ -7,7 +7,6 @@ use App\Http\Resources\VoteClosureResource;
 use App\Models\Question;
 use App\Models\VoteClosure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class VoteController extends Controller
@@ -65,8 +64,9 @@ class VoteController extends Controller
     /**
      *  Close voting for a question
      */
-    public function close(Request $request, Question $question)
+    public function close(Request $request, string $code)
     {
+        $question = Question::where('code', $code)->firstOrFail();
         Gate::authorize('close', $question);
 
         $validated = $request->validate([
@@ -84,8 +84,9 @@ class VoteController extends Controller
     /**
      *  Get closures for a question
      */
-    public function closures(Request $request, Question $question)
+    public function closures(string $code)
     {
+        $question = Question::where('code', $code)->firstOrFail();
         Gate::authorize('view_closures', $question);
         return VoteClosureResource::collection($question->closures);
     }
@@ -118,9 +119,9 @@ class VoteController extends Controller
      * Get voting results for a specific closure
      * @response array{ "closure": VoteClosureResource, "question_type": "single_choice", "results": array{ "answer": "Yes", "count": 2 } }[]
      */
-    public function result_archive(string $question_id, $closure_id)
+    public function result_archive(string $code, $closure_id)
     {
-        $question = Question::with('choices', 'answers', 'answers.choice', 'owner')->findOrFail($question_id);
+        $question = Question::with('choices', 'answers', 'answers.choice', 'owner')->where('code', $code)->firstOrFail();
         Gate::authorize('view_result_archive', $question);
 
         $closure = $question->closures()->findOrFail($closure_id);
@@ -145,9 +146,9 @@ class VoteController extends Controller
      * Get voting results for all closures
      * @response array{ "question_type": "single_choice", "comparisons": array{ "closure": VoteClosureResource, "results": array{ "answer": "Yes", "count": 2 } }[] }
      */
-    public function result_compare(string $question_id)
+    public function result_compare(string $code)
     {
-        $question = Question::with('choices', 'answers', 'answers.choice', 'owner')->findOrFail($question_id);
+        $question = Question::with('choices', 'answers', 'answers.choice', 'owner')->where('code', $code)->firstOrFail();
         Gate::authorize('view_result_archive', $question);
 
         $closures = $question->closures()->orderBy('created_at')->get();

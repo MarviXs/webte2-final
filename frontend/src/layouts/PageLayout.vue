@@ -81,7 +81,7 @@ const props = defineProps({
 
 @media screen and (min-width: 1440px) {
   .main-padding {
-    padding: 4rem 6rem;
+    padding: 4rem 6.5rem;
   }
 }
 </style>

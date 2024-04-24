@@ -14,7 +14,7 @@
             <side-menu-route to="/questions" label="Questions" :icon="mdiChatQuestionOutline" />
           </div>
         </div>
-        <q-separator class="q-my-md" ></q-separator>
+        <q-separator class="q-my-md"></q-separator>
         <div v-if="!authStore.isAuthenticated">
           <side-menu-route to="/login" label="Log in" :icon="mdiAccount" />
           <side-menu-route to="/register" label="Sign up" :icon="mdiAccountPlus" />
@@ -22,6 +22,8 @@
         <div v-else>
           <side-menu-button label="Log out" :icon="mdiLogout" @click="authStore.logout" />
         </div>
+        <q-space></q-space>
+        <LanguageSelect class="q-mx-md q-mb-md"></LanguageSelect>
       </div>
     </q-drawer>
     <q-page-container>
@@ -32,10 +34,18 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { mdiAccount, mdiAccountPlus, mdiChatQuestionOutline, mdiLogout, mdiMenu, mdiTextBoxEditOutline } from '@quasar/extras/mdi-v7'
+import {
+  mdiAccount,
+  mdiAccountPlus,
+  mdiChatQuestionOutline,
+  mdiLogout,
+  mdiMenu,
+  mdiTextBoxEditOutline
+} from '@quasar/extras/mdi-v7'
 import SideMenuRoute from '@/components/SideMenuRoute.vue'
 import SideMenuButton from '@/components/SideMenuButton.vue'
 import { useAuthStore } from '@/stores/auth-store'
+import LanguageSelect from '@/components/LanguageSelect.vue'
 
 const leftDrawerOpen = ref(false)
 

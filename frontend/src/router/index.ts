@@ -32,14 +32,15 @@ const router = createRouter({
           meta: { requiresAuth: true }
         },
         {
-          path: ':code(\\w{5})',
-          name: 'vote-question',
-          component: () => import('@/views/VoteQuestionView.vue')
-        },
-        {
           path: 'questions/:code(\\w{5})/results',
           name: 'vote-results',
           component: () => import('@/views/VoteLatestResultsView.vue'),
+          meta: { requiresAuth: true }
+        },
+        {
+          path: ':code(\\w{5})/history',
+          name: 'question-closures',
+          component: () => import('@/views/VoteHistoryView.vue'),
           meta: { requiresAuth: true }
         },
         {
@@ -47,6 +48,16 @@ const router = createRouter({
           name: 'vote-public-results',
           component: () => import('@/views/VotePublicLatestResultsView.vue')
         },
+        {
+          path: ':code(\\w{5})/archive/:closure_id',
+          name: 'vote-archive-results',
+          component: () => import('@/views/VoteArchivedResultsView.vue')
+        },
+        {
+          path: ':code(\\w{5})',
+          name: 'vote-question',
+          component: () => import('@/views/VoteQuestionView.vue')
+        }
       ]
     },
     {

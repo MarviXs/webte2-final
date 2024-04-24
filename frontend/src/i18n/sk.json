@@ -1,0 +1,32 @@
+{
+  "auth": {
+    "email": "Email",
+    "password": "Heslo",
+    "login": {
+      "label": "Prihlásenie",
+      "login_btn": "Prihlásiť sa",
+      "no_account": "Ešte nemáte účet?",
+      "sign_up": "Zaregistrujte sa",
+      "toasts": {
+        "login_failed": "Prihlásenie zlyhalo!",
+        "login_success": "Prihlásenie prebehlo úspešne!"
+      }
+    },
+    "register": {
+      "label": "Registrácia",
+      "register_btn": "Zaregistrovať sa",
+      "have_account": "Už máte účet?",
+      "login": "Prihláste sa",
+      "toasts": {
+        "register_failed": "Registrácia zlyhala!",
+        "register_success": "Registrácia prebehla úspešne!"
+      }
+    },
+    "toasts": {
+      "logout_success": "Odhlásenie prebehlo úspešne!"
+    },
+    "rules": {
+      "email_invalid": "Prosím, zadajte platnú emailovú adresu"
+    }
+  }
+}

@@ -29,8 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{question}', [QuestionController::class, 'show']);
         Route::put('/{question}', [QuestionController::class, 'update']);
         Route::delete('/{question}', [QuestionController::class, 'destroy']);
-        Route::post('/{question}/close', [VoteController::class, 'close']);
-        Route::get('/{question}/closures', [VoteController::class, 'closures']);
         Route::post('/{question}/choices', [ChoiceController::class, 'store']);
     });
 
@@ -40,8 +38,10 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('vote')->group(function () {
-        Route::get('/{question_id}/results-archive/{closure_id}', [VoteController::class, 'result_archive']);
-        Route::get('/{question_id}/results-comparison/', [VoteController::class, 'result_compare']);
+        Route::get('/{code}/results-archive/{closure_id}', [VoteController::class, 'result_archive']);
+        Route::get('/{code}/results-comparison/', [VoteController::class, 'result_compare']);
+        Route::get('/{code}/closures', [VoteController::class, 'closures']);
+        Route::post('/{code}/close', [VoteController::class, 'close']);
     });
 
     Route::prefix('admin')->group(function () {

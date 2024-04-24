@@ -39,15 +39,15 @@
           :columns="columns"
           row-key="answer"
           :rows-per-page-options="[5, 10, 20]"
-          hide-bottom
           no-data-label="No results found"
+          rows-per-page-label="Answers per page"
           loading-label="Loading results..."
         >
         </q-table>
       </q-tab-panel>
 
       <q-tab-panel name="pie_chart">
-        <div class="row justify-center">
+        <div v-if="totalVotes > 0" class="row justify-center">
           <apexchart
             type="pie"
             width="100%"
@@ -57,10 +57,13 @@
             :series="pieSeries"
           ></apexchart>
         </div>
+        <div v-else>
+          <div class="text-center">No votes yet</div>
+        </div>
       </q-tab-panel>
 
       <q-tab-panel name="chart_bar">
-        <div class="row justify-center">
+        <div v-if="totalVotes > 0" class="row justify-center">
           <apexchart
             type="bar"
             class="full-width"
@@ -70,11 +73,19 @@
             :series="barSeries"
           ></apexchart>
         </div>
+        <div v-else>
+          <div class="text-center">No votes yet</div>
+        </div>
       </q-tab-panel>
 
       <q-tab-panel name="cloud">
-        <div v-for="result in voteResult.answers" :key="result.answer">
-          {{ result.answer }}: {{ result.count }}
+        <div v-if="totalVotes > 0">
+          <div v-for="result in voteResult.answers" :key="result.answer">
+            {{ result.answer }}: {{ result.count }}
+          </div>
+        </div>
+        <div v-else>
+          <div class="text-center">No votes yet</div>
         </div>
       </q-tab-panel>
     </q-tab-panels>
@@ -95,13 +106,17 @@ const props = defineProps({
     required: true
   }
 })
+
+const totalVotes = computed(() =>
+  props.voteResult.answers.reduce((acc, answer) => acc + answer.count, 0)
+)
+
 const tab = ref<string>('list')
-if(props.voteResult.question_type === QuestionType.SINGLE_CHOICE) {
+if (props.voteResult.question_type === QuestionType.SINGLE_CHOICE) {
   tab.value = 'pie_chart'
-} else if(props.voteResult.question_type === QuestionType.MULTIPLE_CHOICE) {
+} else if (props.voteResult.question_type === QuestionType.MULTIPLE_CHOICE) {
   tab.value = 'chart_bar'
 }
-
 
 const pieSeries = computed(() => props.voteResult.answers.map((answer) => answer.count))
 const pieChartOptions = ref({
