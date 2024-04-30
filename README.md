@@ -27,3 +27,17 @@ php artisan migrate
 ### Config
 `frontend/env.development`
 `backend/config`
+
+## TODO
+- [ ] Wordcloud
+- [ ] Preklad (SK, EN)
+- [ ] Filtrovanie otázok podľa predmetu a dátumu vytvorenia
+- [ ] Porovnanie historického hlasovania
+- [ ] Export otázok
+- [ ] Kopírovanie otázok
+- [ ] QR Kódy
+- [ ] Zmena hesla
+- [ ] Admin zobrazenie otázok + filtrovanie
+- [ ] Admin správa použivateľov
+- [ ] Príručka + export
+- [ ] Video dokumentácia
