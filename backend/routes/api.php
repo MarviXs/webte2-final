@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{question}', [QuestionController::class, 'update']);
         Route::delete('/{question}', [QuestionController::class, 'destroy']);
         Route::post('/{question}/choices', [ChoiceController::class, 'store']);
+        Route::post('/{question}/copy', [QuestionController::class, 'copy']);
     });
 
     Route::prefix('choices')->group(function () {

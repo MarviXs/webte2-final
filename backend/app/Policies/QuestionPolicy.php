@@ -69,6 +69,11 @@ class QuestionPolicy
         return $user->isAdmin() || $this->isOwner($user, $question);
     }
 
+    public function copy(User $user, Question $question): bool
+    {
+        return $user->isAdmin() || $this->isOwner($user, $question);
+    }
+
 
     private function isOwner(User $user, Question $question): bool
     {

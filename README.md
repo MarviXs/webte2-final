@@ -11,6 +11,7 @@ docker compose -f compose.yaml -f compose.dev.yaml up -d --build
 ```bash
 composer install
 php artisan migrate
+# php artisan migrate:fresh --seed
 ```
 
 ### URLs

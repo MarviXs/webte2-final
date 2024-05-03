@@ -39,7 +39,7 @@
 
           <template #body-cell-actions="propsActions">
             <q-td auto-width :props="propsActions">
-
+              <!-- Results button -->
               <q-btn
                 :icon="mdiChartBar"
                 color="gray-btn"
@@ -48,6 +48,11 @@
                 :to="`/questions/${propsActions.row.code}/results`"
               >
                 <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Results </q-tooltip>
+              </q-btn>
+
+              <!-- QR Code button -->
+              <q-btn :icon="mdiQrcode" color="gray-btn" flat round @click="openQRCodeDialog(propsActions.row.code)">
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> QR Code </q-tooltip>
               </q-btn>
 
               <!-- Edit button -->
@@ -61,15 +66,24 @@
                 <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Edit </q-tooltip>
               </q-btn>
 
-              <!-- Delete button -->
-              <q-btn
-                :icon="mdiTrashCan"
-                color="gray-btn"
-                flat
-                round
-                @click="() => deleteQuestion(propsActions.row.id)"
-              >
-                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Delete </q-tooltip>
+              <!--Dropdown -->
+              <q-btn :icon="mdiDotsVertical" color="gray-btn" flat round>
+                <q-menu anchor="bottom right" self="top right">
+                  <q-list class="text-grey-10">
+                    <q-item v-close-popup clickable @click="copyQuestion(propsActions.row.id)">
+                      <div class="row items-center q-gutter-sm">
+                        <q-icon color="grey-8" size="24px" :name="mdiContentCopy" />
+                        <div>Copy</div>
+                      </div>
+                    </q-item>
+                    <q-item v-close-popup clickable @click="deleteQuestion(propsActions.row.id)">
+                      <div class="row items-center q-gutter-sm">
+                        <q-icon color="grey-8" size="24px" :name="mdiTrashCan" />
+                        <div>Delete</div>
+                      </div>
+                    </q-item>
+                  </q-list>
+                </q-menu>
               </q-btn>
             </q-td>
           </template>
@@ -77,6 +91,7 @@
       </div>
     </template>
   </PageLayout>
+  <QuestionQRCodeDialog v-model="qrCodeDialogOpen" :questionCode="qrCodeQuestionCode" />
 </template>
 
 <script setup lang="ts">
@@ -84,9 +99,18 @@ import PageLayout from '@/layouts/PageLayout.vue'
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import type { QTableProps } from 'quasar'
-import { mdiChartBar, mdiPencil, mdiPlus, mdiTrashCan } from '@quasar/extras/mdi-v7'
+import {
+  mdiChartBar,
+  mdiContentCopy,
+  mdiDotsVertical,
+  mdiPencil,
+  mdiPlus,
+  mdiQrcode,
+  mdiTrashCan
+} from '@quasar/extras/mdi-v7'
 import type { Question } from '@/models/Question'
 import QuestionService from '@/services/QuestionService'
+import QuestionQRCodeDialog from '@/components/QuestionQRCodeDialog.vue'
 
 const questions = ref<Question[]>([])
 
@@ -113,6 +137,24 @@ async function deleteQuestion(id: string) {
     console.error(error)
     toast.error('Failed to delete question')
   }
+}
+
+async function copyQuestion(id: string) {
+  try {
+    await QuestionService.copyQuestion(id)
+    toast.success('Question copied successfully')
+    getQuestions()
+  } catch (error) {
+    console.error(error)
+    toast.error('Failed to copy question')
+  }
+}
+
+const qrCodeQuestionCode = ref('')
+const qrCodeDialogOpen = ref(false)
+function openQRCodeDialog(questionCode: string) {
+  qrCodeQuestionCode.value = questionCode
+  qrCodeDialogOpen.value = true
 }
 
 const columns: QTableProps['columns'] = [

@@ -33,6 +33,12 @@ class QuestionService {
       method: 'DELETE',
     })
   }
+
+  async copyQuestion(id: string): Promise<void> {
+    await api(`/questions/${id}/copy`, {
+      method: 'POST',
+    })
+  }
 }
 
 export default new QuestionService()

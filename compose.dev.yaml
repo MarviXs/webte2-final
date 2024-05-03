@@ -9,6 +9,7 @@ services:
       args:
         - BUILD_ENV=development
         - VITE_API_URL=http://localhost:7080/api/
+        - VITE_APP_URL=http://localhost:7080/
     volumes:
       - ./frontend:/app
       - /app/node_modules

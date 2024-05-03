@@ -120,4 +120,21 @@ class QuestionController extends Controller
         $question->delete();
         return response()->json(['message' => 'Question deleted successfully.'], 204);
     }
+
+    /**
+     * Copy a question
+     */
+    public function copy(Question $question)
+    {
+        Gate::authorize('copy', $question);
+
+        $newQuestion = $question->replicate();
+        $newQuestion->code = Question::generateCode();
+        $newQuestion->save();
+
+        $newQuestion->choices()->createMany($question->choices->toArray());
+
+        return new QuestionResource($newQuestion);
+    }
+
 }

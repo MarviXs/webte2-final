@@ -3,8 +3,13 @@ ARG BUILD_ENV=production
 
 # Base stage
 FROM node:lts-bullseye-slim as base
+
 ARG VITE_API_URL
 ENV VITE_API_URL=$VITE_API_URL
+
+ARG VITE_APP_URL
+ENV VITE_APP_URL=$VITE_APP_URL
+
 ENV NODE_ENV ${BUILD_ENV}
 WORKDIR /app
 COPY package*.json ./
