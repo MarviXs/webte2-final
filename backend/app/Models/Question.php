@@ -90,6 +90,8 @@ class Question extends Model
                 ->groupBy('open_answer');
         }
 
+        $query->orderBy('count', 'desc');
+
         return $query;
     }
 }
