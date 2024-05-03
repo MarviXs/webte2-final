@@ -84,11 +84,14 @@ class VoteController extends Controller
     /**
      *  Get closures for a question
      */
+    /**
+     * Get closures for a question
+     */
     public function closures(string $code)
     {
         $question = Question::where('code', $code)->firstOrFail();
         Gate::authorize('view_closures', $question);
-        return VoteClosureResource::collection($question->closures);
+        return VoteClosureResource::collection($question->closures()->latest('created_at')->get());
     }
 
 
