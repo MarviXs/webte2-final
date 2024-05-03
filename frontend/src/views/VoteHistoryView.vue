@@ -45,6 +45,9 @@ import type { VoteClosure } from '@/models/VoteClosure'
 import VoteService from '@/services/VoteService'
 import { useRoute } from 'vue-router'
 import { mdiChartBar } from '@quasar/extras/mdi-v7'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const route = useRoute()
 const closures = ref<VoteClosure[]>([])
@@ -73,7 +76,7 @@ const columns: QTableProps['columns'] = [
     align: 'left',
     sortable: true,
     format(val) {
-      return new Date(val * 1000).toLocaleString()
+      return new Date(val * 1000).toLocaleString(locale.value)
     }
   },
   {
