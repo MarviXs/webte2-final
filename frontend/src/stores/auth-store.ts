@@ -27,7 +27,6 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   async function logout() {
-    toLogin();
     try {
       await AuthService.logout()
     }

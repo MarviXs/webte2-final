@@ -14,6 +14,14 @@ const router = createRouter({
           component: () => import('@/views/VoteCodeEnterView.vue')
         },
         {
+          path: '/guide',
+          component: () => import('@/views/GuideView.vue')
+        },
+        {
+          path: '/account',
+          component: () => import('@/views/AccountView.vue')
+        },
+        {
           path: 'questions',
           name: 'questions',
           component: () => import('@/views/QuestionListView.vue'),

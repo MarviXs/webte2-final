@@ -10,6 +10,7 @@
         <div class="drawer-title">Final assignment</div>
         <div class="links">
           <side-menu-route to="/" :exact="true" label="Vote" :icon="mdiTextBoxEditOutline" />
+          <side-menu-route to="/guide" :exact="true" label="Guide" :icon="mdiBookOutline" />
           <div v-if="authStore.isAuthenticated">
             <side-menu-route to="/questions" label="Questions" :icon="mdiChatQuestionOutline" />
           </div>
@@ -20,6 +21,7 @@
           <side-menu-route to="/register" label="Sign up" :icon="mdiAccountPlus" />
         </div>
         <div v-else>
+          <side-menu-route to="/account" label="Account" :icon="mdiAccount" />
           <side-menu-button label="Log out" :icon="mdiLogout" @click="authStore.logout" />
         </div>
         <q-space></q-space>
@@ -37,6 +39,7 @@ import { ref } from 'vue'
 import {
   mdiAccount,
   mdiAccountPlus,
+  mdiBookOutline,
   mdiChatQuestionOutline,
   mdiLogout,
   mdiMenu,
