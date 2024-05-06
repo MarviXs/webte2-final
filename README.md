@@ -39,7 +39,7 @@ php artisan migrate
 - [X]  Wordcloud
 - [ ]  Preklad (SK, EN)
 - [ ]  Porovnanie historického hlasovania
-- [ ]  Export otázok
+- [X]  Export otázok
 - [ ]  Zmena hesla
 - [ ]  Admin zobrazenie otázok + filtrovanie
 - [ ]  Admin správa použivateľov

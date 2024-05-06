@@ -91,7 +91,9 @@
                 <span :style="{ 
                 fontSize: `${(result.count < 16) ? 16 + (result.count*5): 96}px`,
                 color: (result.count > 10) ? '#5edde4' : (result.count > 6) ? '#f04040' : (result.count > 3) ? '#fb9035' : '#2fc92f'
-                }">{{ result.answer }}</span>
+                }">{{ result.answer }}
+                </span>
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]">{{ result.count }}</q-tooltip>
             </div>
           </div>
         </div>

@@ -52,6 +52,16 @@
         no-caps
         size="15px"
       />
+      <q-btn
+        class="shadow"
+        color="primary"
+        :icon="mdiContentCopy"
+        label="Export"
+        @click="exportQuestions"
+        unelevated
+        no-caps
+        size="15px"
+      />
     </template>
     <template #default>
       <div class="shadow">
@@ -157,8 +167,10 @@ import {
   mdiQrcode,
   mdiTrashCan
 } from '@quasar/extras/mdi-v7'
-import type { Question } from '@/models/Question'
+import type { Question} from '@/models/Question'
+import type { VoteResult } from '@/models/VoteResult'
 import QuestionService from '@/services/QuestionService'
+import VoteService from '@/services/VoteService' 
 import QuestionQRCodeDialog from '@/components/QuestionQRCodeDialog.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -166,6 +178,7 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 
 const questions = ref<Question[]>([])
+let voteResult = ref<VoteResult>()
 const filteredQuestions = computed(() => {
   if (!filterSubject.value && !filterDate.value.from && !filterDate.value.to) {
     return questions.value
@@ -197,6 +210,14 @@ async function getQuestions() {
   }
 }
 getQuestions()
+async function getAnswers(code: string) {
+  try {
+    voteResult.value = await VoteService.getLatestResults(code)
+    return voteResult.value.answers
+  } catch (error) {
+    toast.error('Failed to get latest results')
+  }
+}
 
 async function deleteQuestion(id: string) {
   try {
@@ -294,6 +315,35 @@ const columns: QTableProps['columns'] = [
     field: ''
   }
 ]
+
+// Export questions in a json file on button click
+function exportQuestions() {
+  //Create a json object with question name and answers
+  const exportQuestions = async () => {
+    try {
+      const questionsWithAnswers = await Promise.all(
+        questions.value.map(async (question) => {
+          const answers = await getAnswers(question.code)
+          return { ...question, answers };
+        })
+      );
+
+      const json = JSON.stringify(questionsWithAnswers, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'questions.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to export questions');
+    }
+  };
+  exportQuestions();
+}
+
 </script>
 
 <style scoped></style>
