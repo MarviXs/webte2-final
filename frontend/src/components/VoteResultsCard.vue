@@ -80,17 +80,20 @@
 
       <q-tab-panel name="cloud">
         <div v-if="totalVotes > 0">
-          <vue-word-cloud
-          style="
-          height: 480px;
-          width: 100%;"
-          font-family="Inter"
-          :words="voteResult.answers.map((answer) => ([answer.answer, answer.count]))"
-          :color="([, count]) => count > 10 ? '#3acaea' : count>5 ? '#d54646' : count > 3 ? '#e3b353' : '#41c441'"
-          :font-size-ratio=20
-          :spacing=1/2
-          >
-        </vue-word-cloud>
+          <div class="wordCloud">
+            <div class="word" v-for="result in voteResult.answers" :key="result.answer" 
+            :style="{
+            position: 'absolute',
+            top: `${Math.floor(Math.random() * 75)}%`,
+            left: `${Math.floor(Math.random() * 75)}%`
+            }"
+            >
+                <span :style="{ 
+                fontSize: `${(result.count < 16) ? 16 + (result.count*5): 96}px`,
+                color: (result.count > 10) ? '#5edde4' : (result.count > 6) ? '#f04040' : (result.count > 3) ? '#fb9035' : '#2fc92f'
+                }">{{ result.answer }}</span>
+            </div>
+          </div>
         </div>
         <div v-else>
           <div class="text-center">No votes yet</div>
@@ -107,7 +110,6 @@ import { ref, type PropType } from 'vue'
 import type { QTableProps } from 'quasar'
 import { QuestionType } from '@/models/Question'
 import { computed } from 'vue'
-import VueWordCloud from 'vuewordcloud'
 
 const props = defineProps({
   voteResult: {
@@ -181,10 +183,15 @@ const columns: QTableProps['columns'] = [
     sortable: true
   }
 ]
+
 </script>
 
 <style lang="scss" scoped>
 .border-top {
   border-top: 1px solid #e0e0e0;
+}
+.wordCloud {
+  width: 100%;
+  height: 400px;
 }
 </style>
