@@ -22,6 +22,15 @@
         "register_success": "Registrácia prebehla úspešne!"
       }
     },
+    "change_password":{
+      "label": "Zmena hesla",
+      "change_password_btn": "Zmeniť heslo",
+      "toasts": {
+        "change_password_failed": "Zmena hesla zlyhala!",
+        "change_password_success": "Zmena hesla prebehla úspešne!"
+      },
+      "back": "Späť"
+    },
     "toasts": {
       "logout_success": "Odhlásenie prebehlo úspešne!"
     },

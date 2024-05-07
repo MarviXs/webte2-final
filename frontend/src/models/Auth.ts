@@ -14,4 +14,9 @@ interface AuthResponse {
   token: string
 }
 
-export type { UserLogin, UserRegister, AuthResponse }
+interface UserChangePassword {
+  current_password: string
+  new_password: string
+}
+
+export type { UserLogin, UserRegister, AuthResponse, UserChangePassword }

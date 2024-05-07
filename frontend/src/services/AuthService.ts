@@ -1,5 +1,5 @@
 
-import type { AuthResponse, UserLogin, UserRegister } from '@/models/Auth';
+import type { AuthResponse, UserLogin, UserRegister, UserChangePassword } from '@/models/Auth';
 import type { User } from '@/models/User';
 import { api } from '@/utils/api'
 
@@ -13,6 +13,13 @@ class AuthService {
 
   async register(user: UserRegister): Promise<AuthResponse> {
     return await api('/auth/register', {
+      method: 'POST',
+      body: user
+    })
+  }
+
+  async changePassword(user: UserChangePassword): Promise<void> {
+    return await api('/auth/change-password', {
       method: 'POST',
       body: user
     })

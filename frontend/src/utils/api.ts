@@ -4,7 +4,6 @@ import { ofetch, type $Fetch } from 'ofetch'
 function onRequest(context: { options: any }) {
   const { options } = context
   const authStore = useAuthStore()
-
   if (authStore.token) {
     options.headers = {
       ...options.headers,

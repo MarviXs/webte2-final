@@ -22,6 +22,15 @@
         "register_success": "Register successful!"
       }
     },
+    "change_password":{
+      "label": "Change Password",
+      "change_password_btn": "Change Password",
+      "toasts": {
+        "change_password_failed": "Change Password failed!",
+        "change_password_success": "Change Password successful!"
+      },
+      "back": "Back"
+    },
     "toasts": {
       "logout_success": "Logout successful!"
     },
