@@ -40,7 +40,7 @@ php artisan migrate
 - [ ]  Preklad (SK, EN)
 - [ ]  Porovnanie historického hlasovania
 - [X]  Export otázok
-- [ ]  Zmena hesla
+- [X]  Zmena hesla
 - [ ]  Admin zobrazenie otázok + filtrovanie
 - [ ]  Admin správa použivateľov
 - [ ]  Príručka + export
