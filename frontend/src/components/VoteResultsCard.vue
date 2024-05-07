@@ -111,7 +111,7 @@ import { mdiChartBar, mdiChartPie, mdiCloud, mdiFormatListBulleted } from '@quas
 import { ref, type PropType } from 'vue'
 import type { QTableProps } from 'quasar'
 import { QuestionType } from '@/models/Question'
-import { computed } from 'vue'
+import { computed, watchEffect, nextTick } from 'vue'
 
 const props = defineProps({
   voteResult: {
@@ -186,6 +186,84 @@ const columns: QTableProps['columns'] = [
   }
 ]
 
+watchEffect(()=>{
+  if(tab.value === 'cloud'){
+    nextTick(()=>{
+      const words = document.querySelectorAll('.word')
+      const firstWord = words[0] as HTMLElement
+      firstWord.style.top = '30%'
+      firstWord.style.left = '50%'
+      let spacing = 15
+      //position the rest of the words tightly around the first word to avoid overlap but also to make it look like a cloud
+      for(let i = 1; i < words.length; i++){
+        spacing = 15
+        console.log(i, words.length)
+        if(i === 1){
+          let direction = "up"
+          for(let j = 1; j < Math.min(words.length, 5); j++){
+            const word = words[j] as HTMLElement
+            const spanChild = word.querySelector('span') as HTMLElement
+            if(spanChild.style.color === "#2fc92f") spacing = 5
+            else if(spanChild.style.color === "#fb9035") spacing = 7
+            else if(spanChild.style.color === "#f04040") spacing = 10
+            else if(spanChild.style.color === "#5edde4") spacing = 15
+
+            if(direction === "up"){
+              word.style.top = `${parseInt(firstWord.style.top) - spacing}%`
+              word.style.left = `${parseInt(firstWord.style.left)}%`
+              direction = "right"
+            } else if(direction === "right"){
+              word.style.top = `${parseInt(firstWord.style.top)}%`
+              word.style.left = `${parseInt(firstWord.style.left) + spacing}%`
+              direction = "left"
+            } else if(direction === "left"){
+              word.style.top = `${parseInt(firstWord.style.top)}%`
+              word.style.left = `${parseInt(firstWord.style.left) - spacing}%`
+              direction = "down"
+            } else if(direction === "down"){
+              word.style.top = `${parseInt(firstWord.style.top) + spacing}%`
+              word.style.left = `${parseInt(firstWord.style.left)}%`
+            }
+            i=j
+          }
+        } else {
+          let direction = "right"
+          const centerWord = words[i-1] as HTMLElement
+          for(let j = i; j < Math.min(words.length, i+5); j++){
+            const word = words[j] as HTMLElement
+            const spanChild = word.querySelector('span') as HTMLElement
+            if(spanChild.style.color === "#2fc92f") spacing = 5
+            else if(spanChild.style.color === "#fb9035") spacing = 7
+            else if(spanChild.style.color === "#f04040") spacing = 10
+            else if(spanChild.style.color === "#5edde4") spacing = 15
+
+            if(direction === "right"){
+              word.style.top = `${parseInt(centerWord.style.top)}%`
+              word.style.left = `${parseInt(centerWord.style.left) + spacing}%`
+              direction = "left"
+            }  else if(direction === "left"){
+              word.style.top = `${parseInt(centerWord.style.top)}%`
+              word.style.left = `${parseInt(centerWord.style.left) - spacing}%`
+              direction = "down"
+            } else if(direction === "down"){
+              word.style.top = `${parseInt(centerWord.style.top) + spacing}%`
+              word.style.left = `${parseInt(centerWord.style.left)}%`
+            }
+            i=j
+          }
+          console.log(i)
+        }
+      }
+      //check if the last word is not positioned outside the container and if it is extend the container
+      const lastWord = words[words.length-1] as HTMLElement
+      const container = document.querySelector('.wordCloud') as HTMLElement
+      if(parseInt(lastWord.style.top) > 100){
+        container.style.minHeight = `${parseInt(container.style.minHeight) + 100}px`
+      }
+    })
+  }
+})
+
 </script>
 
 <style lang="scss" scoped>
@@ -193,7 +271,7 @@ const columns: QTableProps['columns'] = [
   border-top: 1px solid #e0e0e0;
 }
 .wordCloud {
-  width: 100%;
-  height: 400px;
+  min-width: 640px;
+  min-height: 480px;
 }
 </style>
