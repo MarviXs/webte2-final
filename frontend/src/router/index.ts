@@ -65,6 +65,11 @@ const router = createRouter({
           path: ':code(\\w{5})',
           name: 'vote-question',
           component: () => import('@/views/VoteQuestionView.vue')
+        },
+        {
+          path: 'users',
+          name: 'users',
+          component: () => import('@/views/UserListView.vue')
         }
       ]
     },
