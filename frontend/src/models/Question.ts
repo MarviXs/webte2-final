@@ -1,4 +1,5 @@
 import type { Choice } from './Choice'
+import type { UserFull } from './User'
 
 enum QuestionType {
   MULTIPLE_CHOICE = 'multiple_choice',
@@ -16,6 +17,7 @@ interface Question {
   choices: Choice[]
   created_at: number
   updated_at: number
+  owner?: UserFull
 }
 
 interface QuestionRequest {
@@ -25,6 +27,7 @@ interface QuestionRequest {
   choices: Choice[]
   is_active: boolean
   subject?: string
+  owner_id?: number
 }
 
 export type { Question, QuestionRequest }

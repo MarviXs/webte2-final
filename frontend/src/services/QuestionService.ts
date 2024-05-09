@@ -7,7 +7,11 @@ class QuestionService {
       method: 'GET',
     })
   }
-
+  async getQuestionsAdmin(): Promise<Question[]> {
+    return await api('/admin/questions', {
+      method: 'GET',
+    })
+  }
   async getQuestion(id: string): Promise<Question> {
     return await api(`/questions/${id}`, {
       method: 'GET',

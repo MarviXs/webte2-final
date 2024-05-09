@@ -9,4 +9,14 @@ interface User {
   role: UserRole
 }
 
-export type { User, UserRole }
+interface UserFull extends User {
+  first_name: string
+  last_name: string
+}
+interface UserRequest {
+  email: string
+  password: string
+  role: UserRole
+}
+
+export type { User, UserFull, UserRole, UserRequest }

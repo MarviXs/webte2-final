@@ -41,6 +41,20 @@
             </q-item>
           </template>
         </q-select>
+        <q-select
+        v-if="authStore.role === 'admin'"
+        v-model="question.owner_id"
+        label="Owner"
+        filled
+        bg-color="white"
+        class="shadow"
+        dense
+        emit-value
+        map-options
+        clearable
+        :options="ownerOptions"
+        style="min-width: 200px"
+      />
       </div>
 
       <ChoiceForm
@@ -58,12 +72,35 @@
 <script setup lang="ts">
 import type { QuestionRequest } from '@/models/Question'
 import { QuestionType } from '@/models/Question'
+import type { User } from '@/models/User'
+import { useAuthStore } from '@/stores/auth-store'
 import ChoiceForm from '@/components/ChoiceForm.vue'
 import type { ChoiceRequest } from '@/models/Choice'
 import { required } from '@/utils/form-validation'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { QForm } from 'quasar'
 import { mdiCheckboxOutline, mdiRadioboxMarked, mdiText } from '@quasar/extras/mdi-v7'
+import UserService from '@/services/UserService'
+import { toast } from 'vue3-toastify'
+
+const authStore = useAuthStore()
+const userList = ref<User[]>([])
+const ownerOptions = computed(() => {
+  return userList.value.map((user) => ({ label: user.email, value: user.id }))
+})
+
+async function getAllUsers() {
+  try {
+    userList.value = await UserService.getUsers()
+  } catch (error) {
+    console.error(error)
+    toast.error('Failed to load users')
+  }
+}
+
+if(authStore.role === 'admin') {
+  getAllUsers()
+}
 
 const question = defineModel<QuestionRequest>('question', {
   required: true

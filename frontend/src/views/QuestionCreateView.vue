@@ -42,7 +42,8 @@ const question = ref<QuestionRequest>({
   question_text: '',
   question_type: QuestionType.SINGLE_CHOICE,
   choices: [],
-  is_active: true
+  is_active: true,
+  owner_id: undefined
 })
 
 const choices = ref<ChoiceRequest[]>([{ choice_text: '', order: 1 }])

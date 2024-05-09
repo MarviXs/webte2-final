@@ -42,6 +42,20 @@
         :options="filterSubjectOptions"
         style="min-width: 200px"
       />
+      <q-select
+        v-if="authStore.role === 'admin'"
+        v-model="filterUser"
+        label="User"
+        filled
+        bg-color="white"
+        class="shadow"
+        dense
+        emit-value
+        map-options
+        clearable
+        :options="filterUserOptions"
+        style="min-width: 200px"
+      />
       <q-btn
         class="shadow"
         color="primary"
@@ -169,18 +183,23 @@ import {
 } from '@quasar/extras/mdi-v7'
 import type { Question} from '@/models/Question'
 import type { VoteResult } from '@/models/VoteResult'
+import type { User } from '@/models/User'
 import QuestionService from '@/services/QuestionService'
-import VoteService from '@/services/VoteService' 
+import VoteService from '@/services/VoteService'
+import UserService from '@/services/UserService'
+import { useAuthStore } from '@/stores/auth-store' 
 import QuestionQRCodeDialog from '@/components/QuestionQRCodeDialog.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
-
+const authStore = useAuthStore() 
+const users = ref<User[]>([])
 const questions = ref<Question[]>([])
 let voteResult = ref<VoteResult>()
+
 const filteredQuestions = computed(() => {
-  if (!filterSubject.value && !filterDate.value.from && !filterDate.value.to) {
+  if (!filterSubject.value && !filterDate.value.from && !filterDate.value.to && !filterUser.value) {
     return questions.value
   }
 
@@ -192,16 +211,31 @@ const filteredQuestions = computed(() => {
     return (
       (!filterSubject.value || question.subject === filterSubject.value) &&
       (!from || createdAt >= from) &&
-      (!to || createdAt <= to)
+      (!to || createdAt <= to) &&
+      (authStore.role === 'admin') ? (!filterUser.value || question.owner?.id === filterUser.value) : true
     )
   })
 })
+
+async function getAllUsers() {
+  try {
+    users.value = await UserService.getUsers()
+  } catch (error) {
+    console.error(error)
+    toast.error('Failed to load users')
+  }
+}
 
 const loadingQuestions = ref(false)
 async function getQuestions() {
   try {
     loadingQuestions.value = true
-    questions.value = await QuestionService.getQuestions()
+    if(authStore.role === 'admin') {
+      getAllUsers()
+      questions.value = await QuestionService.getQuestionsAdmin()
+    } else {
+      questions.value = await QuestionService.getQuestions()
+    }
   } catch (error) {
     console.error(error)
     toast.error('Failed to load questions')
@@ -248,6 +282,11 @@ const filterSubjectOptions = computed(() => {
     .filter((subject, index, self) => self.indexOf(subject) === index)
     .map((subject) => ({ label: subject, value: subject }))
 })
+const filterUser = ref('')
+const filterUserOptions = computed(() => {
+  return users.value.map((user) => ({ label: user.email, value: user.id }))
+})
+
 
 const filterDate = ref({ from: '', to: '' })
 const dateProxy = ref()

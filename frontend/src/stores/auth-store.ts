@@ -9,6 +9,7 @@ import router from '@/router'
 
 export const useAuthStore = defineStore('authStore', () => {
   const token = useStorage('token', '')
+  const role = useStorage('role', '')
   const user = ref<User | null>(null)
 
   const isAuthenticated = computed(() => !!token.value)
@@ -39,6 +40,7 @@ export const useAuthStore = defineStore('authStore', () => {
     if (!isAuthenticated.value) return
     if (delay) await nextTick()
     user.value = await AuthService.getUser()
+    role.value = user.value.role
   }
   getUser(true)
 
@@ -58,6 +60,7 @@ export const useAuthStore = defineStore('authStore', () => {
     clearToken,
     toLogin,
     logout,
-    getUser
+    getUser,
+    role
   }
 })

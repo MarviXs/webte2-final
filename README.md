@@ -41,7 +41,7 @@ php artisan migrate
 - [X]  Porovnanie historického hlasovania - pridať aktuálne výsledky
 - [X]  Export otázok
 - [X]  Zmena hesla
-- [ ]  Admin zobrazenie otázok + filtrovanie
+- [X]  Admin zobrazenie otázok + filtrovanie
 - [ ]  Admin správa použivateľov
 - [ ]  Príručka + export
 - [ ]  Video dokumentácia
