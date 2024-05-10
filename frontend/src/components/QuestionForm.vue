@@ -1,6 +1,18 @@
 <template>
   <q-form ref="form" class="gap column" greedy>
     <div class="row gap-row items-center container-dashboard q-pa-lg">
+      <q-select
+        v-if="authStore.role === 'admin'"
+        v-model="question.owner_id"
+        label="Owner"
+        bg-color="white"
+        class="col-12"
+        dense
+        emit-value
+        map-options
+        clearable
+        :options="ownerOptions"
+      />
       <q-input class="col-grow" label="Subject" v-model="question.subject" />
       <q-checkbox dense v-model="question.is_active" label="Active" left-label />
     </div>
@@ -41,20 +53,6 @@
             </q-item>
           </template>
         </q-select>
-        <q-select
-        v-if="authStore.role === 'admin'"
-        v-model="question.owner_id"
-        label="Owner"
-        filled
-        bg-color="white"
-        class="shadow"
-        dense
-        emit-value
-        map-options
-        clearable
-        :options="ownerOptions"
-        style="min-width: 200px"
-      />
       </div>
 
       <ChoiceForm
@@ -98,7 +96,7 @@ async function getAllUsers() {
   }
 }
 
-if(authStore.role === 'admin') {
+if (authStore.role === 'admin') {
   getAllUsers()
 }
 
