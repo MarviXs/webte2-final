@@ -31,7 +31,7 @@
             </q-td>
           </template>
         </q-table>
-        <div class="closure-comparisons" v-if="notOpen && !noData">
+        <div class="closure-comparisons" v-if="notOpen && !noData && !loadingClosures">
           <apexchart
             ref="barChart"
             type="bar"
