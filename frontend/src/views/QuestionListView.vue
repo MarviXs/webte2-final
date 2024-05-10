@@ -7,7 +7,9 @@
         label="Filter by date"
         class="bg-white shadow"
         bg-color="white"
-        :model-value="filterDate.from || filterDate.to ? `${filterDate.from} - ${filterDate.to}` : ''"
+        :model-value="
+          filterDate.from || filterDate.to ? `${filterDate.from} - ${filterDate.to}` : ''
+        "
         @click="dateProxy.show()"
       >
         <template #append>
@@ -181,19 +183,19 @@ import {
   mdiQrcode,
   mdiTrashCan
 } from '@quasar/extras/mdi-v7'
-import type { Question} from '@/models/Question'
+import type { Question } from '@/models/Question'
 import type { VoteResult } from '@/models/VoteResult'
 import type { User } from '@/models/User'
 import QuestionService from '@/services/QuestionService'
 import VoteService from '@/services/VoteService'
 import UserService from '@/services/UserService'
-import { useAuthStore } from '@/stores/auth-store' 
+import { useAuthStore } from '@/stores/auth-store'
 import QuestionQRCodeDialog from '@/components/QuestionQRCodeDialog.vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
-const authStore = useAuthStore() 
+const authStore = useAuthStore()
 const users = ref<User[]>([])
 const questions = ref<Question[]>([])
 let voteResult = ref<VoteResult>()
@@ -212,7 +214,9 @@ const filteredQuestions = computed(() => {
       (!filterSubject.value || question.subject === filterSubject.value) &&
       (!from || createdAt >= from) &&
       (!to || createdAt <= to) &&
-      (authStore.role === 'admin') ? (!filterUser.value || question.owner?.id === filterUser.value) : true
+      (authStore.role === 'admin'
+        ? !filterUser.value || question.owner?.id === filterUser.value
+        : true)
     )
   })
 })
@@ -230,7 +234,7 @@ const loadingQuestions = ref(false)
 async function getQuestions() {
   try {
     loadingQuestions.value = true
-    if(authStore.role === 'admin') {
+    if (authStore.role === 'admin') {
       getAllUsers()
       questions.value = await QuestionService.getQuestionsAdmin()
     } else {
@@ -286,7 +290,6 @@ const filterUser = ref('')
 const filterUserOptions = computed(() => {
   return users.value.map((user) => ({ label: user.email, value: user.id }))
 })
-
 
 const filterDate = ref({ from: '', to: '' })
 const dateProxy = ref()
@@ -363,26 +366,25 @@ function exportQuestions() {
       const questionsWithAnswers = await Promise.all(
         questions.value.map(async (question) => {
           const answers = await getAnswers(question.code)
-          return { ...question, answers };
+          return { ...question, answers }
         })
-      );
+      )
 
-      const json = JSON.stringify(questionsWithAnswers, null, 2);
-      const blob = new Blob([json], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'questions.json';
-      link.click();
-      URL.revokeObjectURL(url);
+      const json = JSON.stringify(questionsWithAnswers, null, 2)
+      const blob = new Blob([json], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'questions.json'
+      link.click()
+      URL.revokeObjectURL(url)
     } catch (error) {
-      console.error(error);
-      toast.error('Failed to export questions');
+      console.error(error)
+      toast.error('Failed to export questions')
     }
-  };
-  exportQuestions();
+  }
+  exportQuestions()
 }
-
 </script>
 
 <style scoped></style>
