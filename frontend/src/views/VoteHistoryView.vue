@@ -35,7 +35,7 @@
           <apexchart
             ref="barChart"
             type="bar"
-            class="full-width"
+            class="full-width bg-white"
             width="100%"
             height="400"
             :options="barChartOptions"
