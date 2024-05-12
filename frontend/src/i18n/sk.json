@@ -49,5 +49,26 @@
       "register": "Zaregistrovať sa",
       "account": "Účet"
     }
+  },
+  "components":{
+    "label": "Voľba ",
+    "add_choice": "Pridať voľbu"
+  },
+  "questions": {
+    "owner": "Vlastník",
+    "subject": "Predmet",
+    "active": "Aktívny",
+    "title": "Názov otázky",
+    "type": "Typ otázky",
+    "single_choice": "Jedna odpoveď",
+    "multiple_choice": "Viaceré odpovede",
+    "text": "Text",
+    "QR":{
+      "cancel": "Zrušiť",
+      "format": "Formát",
+      "download": "Stiahnúť",
+      "PNG": "PNG",
+      "SVG": "SVG"
+   }
   }
 }

@@ -49,5 +49,26 @@
       "register": "Sign Up",
       "account": "Account"
     }
+  },
+  "components":{
+    "label": "Choice ",
+    "add_choice": "Add Choice"
+  },
+  "questions": {
+    "owner": "Owner",
+    "subject": "Subject",
+    "active": "Active",
+    "title": "Question Title",
+    "type": "Question type",
+    "single_choice": "Single choice",
+    "multiple_choice": "Multiple choice",
+    "text": "Text",
+    "QR":{
+       "cancel": "Cancel",
+       "format": "Format",
+       "download": "Download",
+       "PNG": "PNG",
+       "SVG": "SVG"
+    }
   }
 }

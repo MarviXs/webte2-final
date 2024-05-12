@@ -4,7 +4,7 @@
       <q-select
         v-if="authStore.role === 'admin'"
         v-model="question.owner_id"
-        label="Owner"
+        label="t('questions.owner')"
         bg-color="white"
         class="col-12"
         dense
@@ -13,20 +13,20 @@
         clearable
         :options="ownerOptions"
       />
-      <q-input class="col-grow" label="Subject" v-model="question.subject" />
-      <q-checkbox dense v-model="question.is_active" label="Active" left-label />
+      <q-input class="col-grow" label="t('questions.subject')" v-model="question.subject" />
+      <q-checkbox dense v-model="question.is_active" label="t('questions.active')" left-label />
     </div>
     <div class="container-dashboard q-pa-lg q-mt-lg">
       <div class="row gap-row items-center">
         <q-input
           autogrow
           class="col-grow"
-          label="Question Title"
+          label="t('questions.title')"
           v-model="question.question_text"
           :rules="[required()]"
         />
         <q-select
-          label="Question type"
+          label="t('questions.type')"
           v-model="question.question_type"
           style="min-width: 200px"
           class="col-12 col-sm-auto"
@@ -109,9 +109,9 @@ const localChoices = defineModel<ChoiceRequest[]>('choices', {
 })
 
 const questionTypes = [
-  { label: 'Single choice', value: QuestionType.SINGLE_CHOICE, icon: mdiRadioboxMarked },
-  { label: 'Multiple choice', value: QuestionType.MULTIPLE_CHOICE, icon: mdiCheckboxOutline },
-  { label: 'Text', value: QuestionType.OPEN, icon: mdiText }
+  { label: "t('questions.single_choice')", value: QuestionType.SINGLE_CHOICE, icon: mdiRadioboxMarked },
+  { label: "t('questions.multiple_choice')", value: QuestionType.MULTIPLE_CHOICE, icon: mdiCheckboxOutline },
+  { label: "t('questions.text')", value: QuestionType.OPEN, icon: mdiText }
 ]
 
 const form = ref<QForm>()

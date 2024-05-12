@@ -4,7 +4,7 @@
       <div class="row items-center">
         <q-input
           class="col-grow"
-          :label="'Choice ' + (index + 1)"
+          :label="t('components.label') + (index + 1)"
           v-model="choice.choice_text"
         ></q-input>
         <q-btn
@@ -36,7 +36,7 @@
       </div>
     </template>
 
-    <q-btn class="q-mt-sm" label="Add Choice" outline color="primary" @click="addChoice"></q-btn>
+    <q-btn class="q-mt-sm" label="t('components.add_choice')" outline color="primary" @click="addChoice"></q-btn>
   </div>
 </template>
 
