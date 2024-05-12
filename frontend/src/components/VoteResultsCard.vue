@@ -8,25 +8,25 @@
       align="justify"
       v-model="tab"
     >
-      <q-tab name="list" label="List" no-caps :icon="mdiFormatListBulleted" />
+      <q-tab name="list" :label="t('vote.list')" no-caps :icon="mdiFormatListBulleted" />
       <q-tab
         v-if="voteResult.question_type === QuestionType.SINGLE_CHOICE"
         name="pie_chart"
-        label="Graph"
+        :label="t('vote.graph')"
         no-caps
         :icon="mdiChartPie"
       />
       <q-tab
         v-if="voteResult.question_type === QuestionType.MULTIPLE_CHOICE"
         name="chart_bar"
-        label="Graph"
+        :label="t('vote.graph')"
         no-caps
         :icon="mdiChartBar"
       />
       <q-tab
         v-if="voteResult.question_type === QuestionType.OPEN"
         name="cloud"
-        label="Word Cloud"
+        :label="t('vote.cloud')"
         no-caps
         :icon="mdiCloud"
       />
@@ -39,9 +39,9 @@
           :columns="columns"
           row-key="answer"
           :rows-per-page-options="[5, 10, 20]"
-          no-data-label="No results found"
-          rows-per-page-label="Answers per page"
-          loading-label="Loading results..."
+          :no-data-label="t('vote.data.data')"
+          :rows-per-page-label="t('vote.data.rows')"
+          :loading-label="t('vote.data.loading')"
         >
         </q-table>
       </q-tab-panel>
@@ -58,7 +58,7 @@
           ></apexchart>
         </div>
         <div v-else>
-          <div class="text-center">No votes yet</div>
+          <div class="text-center">{{ t('vote.vote') }}</div>
         </div>
       </q-tab-panel>
 
@@ -74,7 +74,7 @@
           ></apexchart>
         </div>
         <div v-else>
-          <div class="text-center">No votes yet</div>
+          <div class="text-center">{{ t('vote.vote') }}</div>
         </div>
       </q-tab-panel>
 
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div v-else>
-          <div class="text-center">No votes yet</div>
+          <div class="text-center">{{ t('vote.vote') }}</div>
         </div>
       </q-tab-panel>
     </q-tab-panels>
@@ -112,6 +112,9 @@ import { ref, type PropType } from 'vue'
 import type { QTableProps } from 'quasar'
 import { QuestionType } from '@/models/Question'
 import { computed, watchEffect, nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   voteResult: {
@@ -141,7 +144,7 @@ const pieChartOptions = ref({
 
 const barSeries = computed(() => [
   {
-    name: 'Votes',
+    name: t('vote.votes'),
     data: props.voteResult.answers.map((answer) => answer.count)
   }
 ])
@@ -149,7 +152,7 @@ const barChartOptions = ref({
   labels: props.voteResult.answers.map((answer) => answer.answer),
   yaxis: {
     title: {
-      text: 'Votes',
+      text: t('vote.votes'),
       style: {
         fontSize: '14px',
         fontFamily: 'Inter',
@@ -172,14 +175,14 @@ const barChartOptions = ref({
 const columns: QTableProps['columns'] = [
   {
     name: 'answer',
-    label: 'Answer',
+    label: t('vote.answear'),
     field: 'answer',
     align: 'left',
     sortable: true
   },
   {
     name: 'count',
-    label: 'Count',
+    label: t('vote.count'),
     field: 'count',
     align: 'left',
     sortable: true

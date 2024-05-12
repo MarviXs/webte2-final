@@ -70,5 +70,19 @@
       "PNG": "PNG",
       "SVG": "SVG"
    }
+  },
+  "vote": {
+    "list": "List",
+    "graph": "Graf",
+    "cloud": "Word Cloud",
+    "vote": "Ešte neboli zaznamenané žiadne hlasy",
+    "votes": "Hlas",
+    "answear": "Odpoveď",
+    "count" : "Zrátanie",
+    "data":{
+      "data": "Žiadne výsledky nenájdené",
+      "rows": "Odpovede na stránku",
+      "loading": "Načítavanie výsledkov..."
+    }    
   }
 }

@@ -26,7 +26,7 @@
           :rules="[required()]"
         />
         <q-select
-          label="t('questions.type')"
+          :label="t('questions.type')"
           v-model="question.question_type"
           style="min-width: 200px"
           class="col-12 col-sm-auto"

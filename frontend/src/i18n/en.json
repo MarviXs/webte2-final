@@ -70,5 +70,19 @@
        "PNG": "PNG",
        "SVG": "SVG"
     }
+  },
+  "vote": {
+    "list": "List",
+    "graph": "Graph",
+    "cloud": "Word Cloud",
+    "vote": "No votes yet",
+    "votes": "Votes",
+    "answear": "Answear",
+    "count" : "Count",
+    "data":{
+      "data": "No results found",
+      "rows": "Answers per page",
+      "loading": "Loading results..."
+    }    
   }
 }
