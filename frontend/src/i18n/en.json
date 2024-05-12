@@ -37,5 +37,17 @@
     "rules": {
       "email_invalid": "Please enter a valid email address"
     }
+  },
+  "main": {
+    "menu": "Menu",
+    "vote": "Vote",
+    "guide": "Guide",
+    "questions": "Questions",
+    "register": {
+      "login": "Log in",
+      "logout": "Log out",
+      "register": "Sign Up",
+      "account": "Account"
+    }
   }
 }

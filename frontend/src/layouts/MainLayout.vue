@@ -2,27 +2,27 @@
   <q-layout view="lHh LpR lfr">
     <q-header class="bg-white text-secondary shadow">
       <q-toolbar>
-        <q-btn flat dense round :icon="mdiMenu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn flat dense round :icon="mdiMenu" aria-label="t('main.menu')" @click="toggleLeftDrawer" />
       </q-toolbar>
     </q-header>
     <q-drawer v-model="leftDrawerOpen" show-if-above class="shadow bg-white">
       <div class="column q-px-lg full-height">
         <div class="drawer-title">Final assignment</div>
         <div class="links">
-          <side-menu-route to="/" :exact="true" label="Vote" :icon="mdiTextBoxEditOutline" />
-          <side-menu-route to="/guide" :exact="true" label="Guide" :icon="mdiBookOutline" />
+          <side-menu-route to="/" :exact="true" label="t('main.vote')" :icon="mdiTextBoxEditOutline" />
+          <side-menu-route to="/guide" :exact="true" label="t('main.guide')" :icon="mdiBookOutline" />
           <div v-if="authStore.isAuthenticated">
-            <side-menu-route to="/questions" label="Questions" :icon="mdiChatQuestionOutline" />
+            <side-menu-route to="/questions" label="t('main.questions')" :icon="mdiChatQuestionOutline" />
           </div>
         </div>
         <q-separator class="q-my-md"></q-separator>
         <div v-if="!authStore.isAuthenticated">
-          <side-menu-route to="/login" label="Log in" :icon="mdiAccount" />
-          <side-menu-route to="/register" label="Sign up" :icon="mdiAccountPlus" />
+          <side-menu-route to="/login" label="t('main.register.login')" :icon="mdiAccount" />
+          <side-menu-route to="/register" label="t('main.register.register')" :icon="mdiAccountPlus" />
         </div>
         <div v-else>
-          <side-menu-route to="/account" label="Account" :icon="mdiAccount" />
-          <side-menu-button label="Log out" :icon="mdiLogout" @click="authStore.logout" />
+          <side-menu-route to="/account" label="t('main.register.account')" :icon="mdiAccount" />
+          <side-menu-button label="t('main.register.logout')" :icon="mdiLogout" @click="authStore.logout" />
         </div>
         <q-space></q-space>
         <LanguageSelect class="q-mx-md q-mb-md"></LanguageSelect>

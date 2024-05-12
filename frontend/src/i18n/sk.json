@@ -37,5 +37,17 @@
     "rules": {
       "email_invalid": "Prosím, zadajte platnú emailovú adresu"
     }
+  },
+  "main": {
+    "menu": "Menu",
+    "vote": "Hlasovanie",
+    "guide": "Príručka",
+    "questions": "Otáyky",
+    "register": {
+      "login": "Prihlásiť sa",
+      "logout": "Odhlásiť sa",
+      "register": "Zaregistrovať sa",
+      "account": "Účet"
+    }
   }
 }
