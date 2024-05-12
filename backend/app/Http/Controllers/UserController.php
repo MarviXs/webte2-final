@@ -28,6 +28,8 @@ class UserController extends Controller
 
         $createUserData = $request->validate([
             'email' => 'required|string|email|unique:users,email',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'password' => 'required|min:6',
             'role' => 'required|string|in:user,admin'
         ]);
@@ -56,7 +58,9 @@ class UserController extends Controller
 
         $updateUserData = $request->validate([
             'email' => 'string|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:6',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'password' => 'string|min:6',
             'role' => 'string|in:user,admin'
         ]);
 
