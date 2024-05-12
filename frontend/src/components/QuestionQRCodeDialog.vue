@@ -46,6 +46,9 @@ import { mdiDownload } from '@quasar/extras/mdi-v7'
 import QRCodeStyling, { type DrawType, type FileExtension } from 'qr-code-styling'
 import { watch } from 'vue'
 import { nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   questionCode: {

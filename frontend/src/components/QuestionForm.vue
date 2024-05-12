@@ -80,8 +80,11 @@ import { QForm } from 'quasar'
 import { mdiCheckboxOutline, mdiRadioboxMarked, mdiText } from '@quasar/extras/mdi-v7'
 import UserService from '@/services/UserService'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const authStore = useAuthStore()
+
 const userList = ref<User[]>([])
 const ownerOptions = computed(() => {
   return userList.value.map((user) => ({ label: user.email, value: user.id }))

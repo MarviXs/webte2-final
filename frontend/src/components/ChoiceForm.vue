@@ -45,6 +45,9 @@ import type { Choice, ChoiceRequest } from '@/models/Choice'
 import { mdiClose } from '@quasar/extras/mdi-v7'
 import ChoiceService from '@/services/ChoiceService'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const choices = defineModel<Choice[]>('choices', {
   required: true

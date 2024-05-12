@@ -12,7 +12,7 @@
           <side-menu-route to="/" :exact="true" :label="t('main.vote')" :icon="mdiTextBoxEditOutline" />
           <side-menu-route to="/guide" :exact="true" :label="t('main.guide')" :icon="mdiBookOutline" />
           <div v-if="authStore.isAuthenticated">
-            <side-menu-route to="/questions" label="t('main.questions')" :icon="mdiChatQuestionOutline" />
+            <side-menu-route to="/questions" :label="t('main.questions')" :icon="mdiChatQuestionOutline" />
           </div>
         </div>
         <q-separator class="q-my-md"></q-separator>
@@ -49,6 +49,9 @@ import SideMenuRoute from '@/components/SideMenuRoute.vue'
 import SideMenuButton from '@/components/SideMenuButton.vue'
 import { useAuthStore } from '@/stores/auth-store'
 import LanguageSelect from '@/components/LanguageSelect.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const leftDrawerOpen = ref(false)
 
