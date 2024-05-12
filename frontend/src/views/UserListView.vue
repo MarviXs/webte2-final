@@ -6,7 +6,7 @@
                 color="primary"
                 :icon="mdiPlus"
                 label="Create user"
-                to="/user/create"
+                to="/users/create"
                 unelevated
                 no-caps
                 size="15px"
@@ -35,7 +35,7 @@
                     color="gray-btn"
                     flat
                     round
-                    :to="`/user/${propsActions.row.id}/edit`"
+                    :to="`/users/${propsActions.row.id}/edit`"
                 >
                     <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Edit </q-tooltip>
                 </q-btn>

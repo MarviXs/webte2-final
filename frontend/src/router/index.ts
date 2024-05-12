@@ -70,6 +70,16 @@ const router = createRouter({
           path: 'users',
           name: 'users',
           component: () => import('@/views/UserListView.vue')
+        },
+        {
+          path: 'users/:id/edit',
+          name: 'users-edit',
+          component: () => import('@/views/UserEditView.vue')
+        },
+        {
+          path: 'users/create',
+          name: 'users-create',
+          component: () => import('@/views/UserCreateView.vue')
         }
       ]
     },

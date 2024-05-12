@@ -10,6 +10,21 @@ interface UserRegister {
   password: string
 }
 
+interface UserCreate {
+  email: string
+  first_name: string
+  last_name: string
+  password: string
+  role: string
+}
+interface UserUpdate {
+  email: string
+  password: string
+  role: string
+  first_name: string
+  last_name: string
+}
+
 interface AuthResponse {
   token: string
 }
@@ -19,4 +34,4 @@ interface UserChangePassword {
   new_password: string
 }
 
-export type { UserLogin, UserRegister, AuthResponse, UserChangePassword }
+export type { UserLogin, UserRegister, AuthResponse, UserChangePassword, UserCreate, UserUpdate}

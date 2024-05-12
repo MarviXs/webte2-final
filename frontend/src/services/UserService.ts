@@ -1,4 +1,4 @@
-import type { User, UserRequest } from '@/models/User'
+import type { User, UserRequest, UserUpdate, UserCreate, UserFull } from '@/models/User'
 import { api } from '@/utils/api'
 
 class UserService {
@@ -8,20 +8,20 @@ class UserService {
     })
   }
 
-  async getUser(id: string): Promise<User> {
+  async getUser(id: string): Promise<UserFull> {
     return await api(`/admin/users/${id}`, {
       method: 'GET',
     })
   }
 
-  async createUser(question: UserRequest): Promise<User> {
+  async createUser(question: UserCreate): Promise<User> {
     return await api('/admin/users', {
       method: 'POST',
       body: question,
     })
   }
 
-  async updateUser(id: string, question: UserRequest): Promise<User> {
+  async updateUser(id: string, question: UserUpdate): Promise<User> {
     return await api(`/admin/users/${id}`, {
       method: 'PUT',
       body: question,

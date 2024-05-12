@@ -18,5 +18,19 @@ interface UserRequest {
   password: string
   role: UserRole
 }
-
-export type { User, UserFull, UserRole, UserRequest }
+interface UserUpdate {
+  email: string
+  password: string
+  role: UserRole
+  first_name: string
+  last_name: string
+}
+interface UserCreate {
+  email: string
+  password: string
+  role: UserRole
+  first_name: string
+  last_name: string
+}
+export type { User, UserFull, UserRequest, UserUpdate, UserCreate }
+export { UserRole }
