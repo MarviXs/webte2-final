@@ -42,6 +42,6 @@ php artisan migrate
 - [X]  Export otázok
 - [X]  Zmena hesla
 - [X]  Admin zobrazenie otázok + filtrovanie
-- [ ]  Admin správa použivateľov
+- [X]  Admin správa použivateľov
 - [ ]  Príručka + export
 - [ ]  Video dokumentácia
