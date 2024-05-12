@@ -24,7 +24,7 @@
         <q-select
           v-model="extension"
           :options="extensionOptions"
-          label="t('questions.owner.format')"
+          :label="t('questions.owner.format')"
           outlined
           mapOptions
           emitValue
@@ -33,8 +33,8 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn flat label="t('questions.owner.cancel')" color="primary" />
-        <q-btn unelevated label="t('questions.owner.download')" color="primary" :icon="mdiDownload" @click="download" />
+        <q-btn flat :label="t('questions.owner.cancel')" color="primary" />
+        <q-btn unelevated :label="t('questions.owner.download')" color="primary" :icon="mdiDownload" @click="download" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -65,8 +65,8 @@ const qrCodeValue = computed(() => {
 
 const extension = ref<FileExtension>('png')
 const extensionOptions = [
-  { label: "t('questions.owner.PNG')", value: 'png' },
-  { label: "t('questions.owner.SVG')", value: 'svg' }
+  { label: t('questions.owner.PNG'), value: 'png' },
+  { label: t('questions.owner.SVG'), value: 'svg' }
 ]
 
 const resolution = ref(500)
