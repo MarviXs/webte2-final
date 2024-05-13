@@ -44,7 +44,7 @@
     "menu": "Menu",
     "vote": "Hlasovanie",
     "guide": "Príručka",
-    "questions": "Otáyky",
+    "questions": "Otázky",
     "register": {
       "login": "Prihlásiť sa",
       "logout": "Odhlásiť sa",
@@ -74,6 +74,8 @@
    }
   },
   "vote": {
+    "code": "Vložiť kód",
+    "enter": "Ďalej",
     "list": "List",
     "graph": "Graf",
     "cloud": "Word Cloud",
@@ -93,7 +95,8 @@
     "roles": {
       "admin": "admin",
       "user": "použivatel"
-    }
+    }, 
+    "manage_users": "Klikni sem!"
   },
   "account": {
     "label": "Účet",

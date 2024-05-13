@@ -8,7 +8,7 @@
       >
         <q-input
           v-model="voteCode"
-          label="Vote code"
+          :label="t('vote.code')"
           type="text"
           :rules="[required(), minLength(5), maxLength(5)]"
           lazy-rules
@@ -20,7 +20,7 @@
         <q-btn
           class="q-my-md"
           color="primary"
-          label="Next"
+          :label="t('vote.enter')"
           type="submit"
           size="1rem"
           :loading="voteStore.questionLoading"
@@ -41,6 +41,9 @@ import { mdiArrowRight, mdiPound } from '@quasar/extras/mdi-v7'
 import { useVoteStore } from '@/stores/vote-store';
 import { toast } from 'vue3-toastify';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const voteCode = ref('')
 const voteStore = useVoteStore()
