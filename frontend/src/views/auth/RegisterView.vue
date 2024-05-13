@@ -7,7 +7,7 @@
           <q-input
             ref="mailRef"
             v-model="userRegister.email"
-            label="Email"
+            :label="t('auth.email')"
             type="email"
             :rules="[required(), isEmail()]"
             lazy-rules
@@ -18,7 +18,7 @@
           </q-input>
           <q-input
             v-model="userRegister.first_name"
-            label="First name"
+            :label="t('users.first_name')"
             type="text"
             :rules="[required(), minLength(2), maxLength(50)]"
             lazy-rules
@@ -29,7 +29,7 @@
           </q-input>
           <q-input
             v-model="userRegister.last_name"
-            label="Last name"
+            :label="t('users.last_name')"
             type="text"
             :rules="[required(), minLength(2), maxLength(80)]"
             lazy-rules
@@ -41,7 +41,7 @@
           <q-input
             ref="passwordRef"
             v-model="userRegister.password"
-            label="Password"
+            :label="t('auth.password')"
             :type="isPwd ? 'password' : 'text'"
             :rules="[required(), minLength(6)]"
           >

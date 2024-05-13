@@ -7,7 +7,7 @@
             <q-input
               ref="passwordRef"
               v-model="userChangePassword.current_password"
-              label="Old Password"
+              :label="t('auth.change_password.old_password')"
               :type="isPwd ? 'password' : 'text'"
               :rules="[required(), minLength(6)]"
             >
@@ -25,7 +25,7 @@
             <q-input
               ref="passwordRef"
               v-model="userChangePassword.new_password"
-              label="New Password"
+              :label="t('auth.change_password.new_password')"
               :type="isPwdNew ? 'password' : 'text'"
               :rules="[required(), minLength(6)]"
             >

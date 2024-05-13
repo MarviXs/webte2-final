@@ -25,6 +25,8 @@
     "change_password":{
       "label": "Change Password",
       "change_password_btn": "Change Password",
+      "old_password": "Old Password",
+      "new_password": "New Password",
       "toasts": {
         "change_password_failed": "Change Password failed!",
         "change_password_success": "Change Password successful!"
@@ -84,5 +86,19 @@
       "rows": "Answers per page",
       "loading": "Loading results..."
     }    
-  }
+  },
+  "users":{
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "roles": {
+      "admin": "admin",
+      "user": "user"
+    }
+  },
+  "account": {
+    "label": "Account",
+    "change_password": "Want to change your password?",
+    "manage_users": "Want to manage users?"
+  },
+  "todo": "Lorem ipsum dolor sit amet"
 }

@@ -1,10 +1,10 @@
 <template>
-  <PageLayout title="Guide" max-width="1200px">
+  <PageLayout :title="t('main.guide')" max-width="1200px">
     <template #actions>
-      <q-btn class="shadow" color="primary" label="Download" unelevated size="15px" />
+      <q-btn class="shadow" color="primary" :label="t('questions.download')" unelevated size="15px" />
     </template>
     <template #default>
-      Lorem ipsum dolor sit amet
+      {{ t('todo') }}
       <!-- TODO GUIDE -->
     </template>
   </PageLayout>
@@ -12,4 +12,6 @@
 
 <script setup lang="ts">
 import PageLayout from '@/layouts/PageLayout.vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 </script>

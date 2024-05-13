@@ -3,7 +3,7 @@
             <q-input
             ref="mailRef"
             v-model="user.email"
-            label="Email"
+            :label="t('auth.email')"
             type="email"
             :rules="[required(), isEmail()]"
             lazy-rules
@@ -14,7 +14,7 @@
             </q-input>
             <q-input
             v-model="user.first_name"
-            label="First name"
+            :label="t('users.first_name')"
             type="text"
             :rules="[required(), minLength(2), maxLength(50)]"
             lazy-rules
@@ -25,7 +25,7 @@
           </q-input>
           <q-input
             v-model="user.last_name"
-            label="Last name"
+            :label="t('users.last_name')"
             type="text"
             :rules="[required(), minLength(2), maxLength(80)]"
             lazy-rules
@@ -37,7 +37,7 @@
             <q-input
             ref="passwordRef"
             v-model="user.password"
-            label="Password"
+            :label="t('auth.password')"
             :type="isPwd ? 'password' : 'text'"
             :rules="[ required(), minLength(6)]"
           >
@@ -100,8 +100,8 @@ const user = defineModel<UserUpdate>('user', {
 })
 
 const roles = [
-  { label: "user", value: 'user', icon: mdiAccount },
-  { label: "admin", value: 'admin', icon: mdiShieldAccountOutline }
+  { label: t('users.roles.user'), value: 'user', icon: mdiAccount },
+  { label: t('users.roles.admin'), value: 'admin', icon: mdiShieldAccountOutline }
 ]
 
 const isPwd = ref(true)

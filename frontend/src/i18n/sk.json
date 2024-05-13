@@ -25,6 +25,8 @@
     "change_password":{
       "label": "Zmena hesla",
       "change_password_btn": "Zmeniť heslo",
+      "old_password": "Staré heslo",
+      "new_password": "Nové heslo",
       "toasts": {
         "change_password_failed": "Zmena hesla zlyhala!",
         "change_password_success": "Zmena hesla prebehla úspešne!"
@@ -84,5 +86,18 @@
       "rows": "Odpovede na stránku",
       "loading": "Načítavanie výsledkov..."
     }    
+  },
+  "users":{
+    "first_name": "Krstné meno",
+    "last_name": "Priezvisko",
+    "roles": {
+      "admin": "admin",
+      "user": "použivatel"
+    }
+  },
+  "account": {
+    "label": "Účet",
+    "change_password": "Chcete si zmeniť heslo?",
+    "manage_users": "Chcete spravovať použivatelov?"
   }
 }

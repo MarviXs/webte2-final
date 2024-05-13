@@ -1,13 +1,13 @@
 <template>
-    <PageLayout title="Account">
+    <PageLayout :title="t('account.label')">
       <template #default>
-        <span>Want to change your password?</span>
+        <span>{{ t('account.change_password') }}</span>
         <router-link to="/change-password" class="q-ml-sm">
           {{ t('auth.change_password.label') }}
         </router-link>
 
         <div v-if="authStore.role === 'admin'">
-          <span>Want to manage users?</span>
+          <span>{{ t('account.manage_users') }}</span>
           <router-link to="/users" class="q-ml-sm">
             {{ t('users.manage_users') }}
           </router-link>
