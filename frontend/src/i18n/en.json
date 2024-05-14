@@ -121,15 +121,21 @@
     "edit_user": "Edit User",
     "roles": {
       "admin": "admin",
+      "role": "Role",
       "user": "user",
       "upper_user": "User"
     }, 
     "manage_users": "Click here!"
   },
   "columns": {
+    "code": "Code",
     "closed_at": "Closed at",
+    "question" : "Question",
     "note": "Note",
-    "actions": "Actions"
+    "actions": "Actions",
+    "status": "Status",
+    "created_at": "Created At",
+    "updated_at": "Updated At"
   },
   "account": {
     "label": "Account",

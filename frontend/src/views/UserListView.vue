@@ -135,28 +135,28 @@ const columns: QTableProps['columns'] = [
     },
     {
         name: 'first_name',
-        label: 'First Name',
+        label: t('users.first_name'),
         field: 'first_name',
         align: 'left',
         sortable: true
     },
     {
         name: 'last_name',
-        label: 'Last Name',
+        label: t('users.last_name'),
         field: 'last_name',
         align: 'left',
         sortable: true
     },
     {
         name: 'role',
-        label: 'Role',
+        label: t('users.roles.role'),
         field: 'role',
         align: 'left',
         sortable: true
     },
     {
         name: 'actions',
-        label: 'Actions',
+        label: t('col.first_name'),
         align: 'center',
         field: ''
     }

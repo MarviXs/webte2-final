@@ -121,14 +121,20 @@
     "roles": {
       "admin": "admin",
       "user": "použivatel",
+      "role": "Rola",
       "upper_user": "Použivateľ"
     }, 
     "manage_users": "Klikni sem!"
   },
   "columns": {
+    "code": "kód",
+    "question" : "Otázka",
     "closed_at": "Uzavreté v",
     "note": "Poznámka",
-    "actions": "Akcie"
+    "actions": "Akcie",
+    "status": "Status",
+    "created_at": "Vytvorené dňa",
+    "updated_at": "Aktualizované dňa"
   },
   "account": {
     "label": "Účet",

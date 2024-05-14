@@ -304,35 +304,35 @@ function openQRCodeDialog(questionCode: string) {
 const columns: QTableProps['columns'] = [
   {
     name: 'code',
-    label: 'Code',
+    label: t('columns.code'),
     field: 'code',
     align: 'left',
     sortable: true
   },
   {
     name: 'question_text',
-    label: 'Question',
+    label: t('columns.question'),
     field: 'question_text',
     align: 'left',
     sortable: true
   },
   {
     name: 'subject',
-    label: 'Subject',
+    label: t('questions.subject'),
     field: 'subject',
     align: 'left',
     sortable: true
   },
   {
     name: 'status',
-    label: 'Status',
+    label: t('columns.status'),
     field: 'is_active',
     align: 'center',
     sortable: true
   },
   {
     name: 'created_at',
-    label: 'Created At',
+    label:  t('columns.created_at'),
     field: 'created_at',
     align: 'right',
     format(val) {
@@ -342,7 +342,7 @@ const columns: QTableProps['columns'] = [
   },
   {
     name: 'updated_at',
-    label: 'Updated At',
+    label:  t('columns.updated_at'),
     field: 'updated_at',
     align: 'right',
     format(val) {
@@ -352,7 +352,7 @@ const columns: QTableProps['columns'] = [
   },
   {
     name: 'actions',
-    label: 'Actions',
+    label:  t('columns.actions'),
     align: 'center',
     field: ''
   }

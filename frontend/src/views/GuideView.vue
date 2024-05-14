@@ -1,7 +1,7 @@
 <template>
   <PageLayout :title="t('main.guide')" max-width="1200px">
     <template #actions>
-      <q-btn class="shadow" color="primary" :label="t('questions.download')" unelevated size="15px" />
+      <q-btn class="shadow" color="primary" :label="t('questions.export')" unelevated size="15px" />
     </template>
     <template #default>
       {{ t('todo') }}
