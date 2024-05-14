@@ -1,11 +1,11 @@
 <template>
-    <PageLayout title="Users">
+    <PageLayout :title="t('users.create_users')">
         <template #actions>
             <q-btn
                 class="shadow"
                 color="primary"
                 :icon="mdiPlus"
-                label="Create user"
+                :label="t('users.create_user')"
                 to="/users/create"
                 unelevated
                 no-caps
@@ -21,9 +21,9 @@
             flat
             :loading="loadingUsers"
             :rows-per-page-options="[10, 20, 30]"
-            no-data-label="No users found"
-            loading-label="Loading users..."
-            rows-per-page-label="Users per page"
+            :no-data-label="t('vote.data.user_data_label')"
+            :loading-label="t('vote.data.user_loading_label')"
+            :rows-per-page-label="t('vote.data.user_rows_label')"
             >
 
             <template #body-cell-actions="propsActions">
@@ -47,7 +47,7 @@
                         <q-item v-close-popup clickable @click="deleteUser(propsActions.row.id)">
                         <div class="row items-center q-gutter-sm">
                             <q-icon color="grey-8" size="24px" :name="mdiTrashCan" />
-                            <div>Delete</div>
+                            <div>{{ t('questions.delete') }}</div>
                         </div>
                         </q-item>
                     </q-list>

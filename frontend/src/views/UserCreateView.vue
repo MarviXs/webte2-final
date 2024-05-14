@@ -1,6 +1,6 @@
 <template>
     <PageLayout
-      title="Create User"
+    :title="t('users.create_user')"
       previous-title="Users"
       previous-route="/users"
       class="full-width"
@@ -10,7 +10,7 @@
         <q-btn
           class="shadow"
           color="primary"
-          label="Create"
+          :label="t('questions.create')"
           @click="createUser"
           :loading="creatingUser"
           type="submit"
@@ -32,6 +32,8 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { toast } from 'vue3-toastify'
+  import { useI18n } from 'vue-i18n';
+  const { t } = useI18n()
   
   const router = useRouter()
 

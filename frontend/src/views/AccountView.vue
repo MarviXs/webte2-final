@@ -18,8 +18,8 @@
   
   <script setup lang="ts">
   import PageLayout from '@/layouts/PageLayout.vue'
-  import { useI18n } from 'vue-i18n'
-  import { useAuthStore } from '@/stores/auth-store';
+  import { useAuthStore } from '@/stores/auth-store'
+  import { useI18n } from 'vue-i18n';
   const { t } = useI18n()
 
   const authStore = useAuthStore()

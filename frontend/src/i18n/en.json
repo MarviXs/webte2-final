@@ -45,6 +45,8 @@
     "vote": "Vote",
     "guide": "Guide",
     "questions": "Questions",
+    "create_question": "Create Question",
+    "filter": "Filter by date",
     "register": {
       "login": "Log in",
       "logout": "Log out",
@@ -62,9 +64,16 @@
     "active": "Active",
     "title": "Question Title",
     "type": "Question type",
+    "edit": "Edit Question",
     "single_choice": "Single choice",
     "multiple_choice": "Multiple choice",
     "text": "Text",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "close": "Close",
+    "export": "Export",
+    "submit": "Submit",
     "QR":{
        "cancel": "Cancel",
        "format": "Format",
@@ -83,20 +92,44 @@
     "votes": "Votes",
     "answear": "Answear",
     "count" : "Count",
+    "results": "Results",
+    "close_vote" : "Close Vote",
+    "vote_archive": "Vote Archive",
+    "previous_results": "Results",
+    "previous_archive": "Vote Archive",
     "data":{
+      "code_not_found": "Question with this code not found",
       "data": "No results found",
       "rows": "Answers per page",
-      "loading": "Loading results..."
+      "loading": "Loading results...",
+      "data_label": "No questions found",
+      "loading_label": "Loading questions...",
+      "rows_label": "Questions per page",
+      "user_data_label": "No users found",
+      "user_loading_label": "Loading users...",
+      "user_rows_label": "Users per page",
+      "vote_data_label": "No votes closures found",
+      "vote_loading_label": "Loading votes archive...",
+      "vote_rows_label": "Vote closures per page"
     }    
   },
   "users":{
     "first_name": "First Name",
     "last_name": "Last Name",
+    "create_user": "Create User",
+    "create_users": "Users",
+    "edit_user": "Edit User",
     "roles": {
       "admin": "admin",
-      "user": "user"
+      "user": "user",
+      "upper_user": "User"
     }, 
     "manage_users": "Click here!"
+  },
+  "columns": {
+    "closed_at": "Closed at",
+    "note": "Note",
+    "actions": "Actions"
   },
   "account": {
     "label": "Account",

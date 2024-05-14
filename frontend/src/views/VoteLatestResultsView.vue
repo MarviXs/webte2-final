@@ -1,11 +1,11 @@
 <template>
-  <PageLayout title="Results" previous-title="Questions" previous-route="/questions">
+  <PageLayout :title="t('vote.results')" :previous-title="t('main.questions')"  previous-route="/questions">
     <template #actions>
       <q-btn
         class="shadow bg-white"
         color="white"
         text-color="primary"
-        label="Vote Archive"
+        :label="t('vote.vote_archive')"
         :icon="mdiHistory"
         :to="`/${route.params.code}/history`"
         outline
@@ -15,7 +15,7 @@
       <q-btn
         class="shadow"
         color="primary"
-        label="Close Vote"
+        :label="t('vote.close_vote')"
         @click="closeVoteDialog = true"
         :icon="mdiCloseCircleOutline"
         unelevated
@@ -29,19 +29,19 @@
   <q-dialog v-model="closeVoteDialog">
     <q-card style="width: 300px">
       <q-card-section>
-        <div class="text-h6">Close Vote</div>
+        <div class="text-h6">{{ t('vote.close_vote') }}</div>
       </q-card-section>
       <q-card-section>
         <q-input
           v-model="closeVoteNote"
-          label="Note"
+          :label="t('columns.note')"
           type="textarea"
           outlined
         />
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn label="Cancel" color="primary" flat @click="closeVoteDialog = false" />
-        <q-btn label="Close vote" color="primary" unelevated @click="closeVote" />
+        <q-btn :label="t('questions.QR.cancel')" color="primary" flat @click="closeVoteDialog = false" />
+        <q-btn :label="t('vote.close_vote')" color="primary" unelevated @click="closeVote" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -56,6 +56,8 @@ import { useRoute } from 'vue-router'
 import { toast } from 'vue3-toastify'
 import VoteResultsCard from '@/components/VoteResultsCard.vue'
 import { mdiCloseCircleOutline, mdiHistory } from '@quasar/extras/mdi-v7'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const voteResult = ref<VoteResult>()
 const route = useRoute()

@@ -1,10 +1,10 @@
 <template>
-  <PageLayout title="Questions">
+  <PageLayout :title="t('main.questions')">
     <template #actions>
       <q-input
         dense
         filled
-        label="Filter by date"
+        :label="t('main.filter')"
         class="bg-white shadow"
         bg-color="white"
         :model-value="
@@ -17,7 +17,7 @@
             <q-popup-proxy cover transition-show="scale" transition-hide="scale" ref="dateProxy">
               <q-date range v-model="filterDate">
                 <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
+                  <q-btn v-close-popup :label="t('questions.close')"> color="primary" flat />
                 </div>
               </q-date>
             </q-popup-proxy>
@@ -33,7 +33,7 @@
       </q-input>
       <q-select
         v-model="filterSubject"
-        label="Subject"
+        :label="t('questions.subject')"
         filled
         bg-color="white"
         class="shadow"
@@ -47,7 +47,7 @@
       <q-select
         v-if="authStore.role === 'admin'"
         v-model="filterUser"
-        label="User"
+        :label="t('users.roles.upper_user')"
         filled
         bg-color="white"
         class="shadow"
@@ -62,7 +62,7 @@
         class="shadow"
         color="primary"
         :icon="mdiPlus"
-        label="Create question"
+        :label="t('main.create_question')"
         to="/questions/create"
         unelevated
         no-caps
@@ -72,7 +72,7 @@
         class="shadow"
         color="primary"
         :icon="mdiContentCopy"
-        label="Export"
+        :label="t('questions.export')"
         @click="exportQuestions"
         unelevated
         no-caps
@@ -88,9 +88,9 @@
           flat
           :loading="loadingQuestions"
           :rows-per-page-options="[10, 20, 30]"
-          no-data-label="No questions found"
-          loading-label="Loading questions..."
-          rows-per-page-label="Questions per page"
+          :no-data-label="t('vote.data.data_label')"
+          :loading-label="t('vote.data.loading_label')"
+          :rows-per-page-label="t('vote.data.rows_label')"
         >
           <template #body-cell-status="props">
             <q-td :props="props">
@@ -152,7 +152,7 @@
                     <q-item v-close-popup clickable @click="deleteQuestion(propsActions.row.id)">
                       <div class="row items-center q-gutter-sm">
                         <q-icon color="grey-8" size="24px" :name="mdiTrashCan" />
-                        <div>Delete</div>
+                        <div>{{ t('questions.delete') }}</div>
                       </div>
                     </q-item>
                   </q-list>

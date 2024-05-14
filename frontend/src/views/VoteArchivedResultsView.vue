@@ -1,5 +1,5 @@
 <template>
-  <PageLayout title="Results" previous-title="Vote Archive" :previous-route="`/${route.params.code}/history`">
+  <PageLayout :title="t('vote.results')" :previous-title="t('vote.previous_archive')" :previous-route="`/${route.params.code}/history`">
     <VoteResultsCard v-if="voteResult" :voteResult="voteResult" />
   </PageLayout>
 </template>
@@ -12,7 +12,9 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { toast } from 'vue3-toastify'
 import VoteResultsCard from '@/components/VoteResultsCard.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const voteResult = ref<VoteResult>()
 const route = useRoute()
 

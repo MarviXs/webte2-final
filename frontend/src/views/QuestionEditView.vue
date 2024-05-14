@@ -1,6 +1,6 @@
 <template>
   <PageLayout
-    title="Edit Question"
+    :title="t('questions.edit')"
     previous-title="Questions"
     previous-route="/questions"
     class="full-width"
@@ -10,7 +10,7 @@
       <q-btn
         class="shadow"
         color="primary"
-        label="Update"
+        :label="t('questions.update')"
         @click="updateQuestion"
         :loading="updatingQuestion"
         type="submit"
@@ -34,6 +34,8 @@ import ChoiceService from '@/services/ChoiceService'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n()
 
 const router = useRouter()
 const route = useRoute()

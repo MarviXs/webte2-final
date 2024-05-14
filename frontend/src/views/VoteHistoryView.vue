@@ -1,7 +1,7 @@
 <template>
   <PageLayout
-    title="Vote Archive"
-    previous-title="Results"
+    :title="t('vote.vote_archive')"
+    :previous-title="t('vote.previous_results')"
     :previous-route="`/questions/${route.params.code}/results`"
   >
     <template #default>
@@ -13,9 +13,9 @@
           flat
           :loading="loadingClosures"
           :rows-per-page-options="[10, 20, 30]"
-          no-data-label="No vote closures found"
-          loading-label="Loading vote archive..."
-          rows-per-page-label="Vote closures per page"
+          :no-data-label="t('vote.data.vote_data_label')"
+          :loading-label="t('vote.data.vote_loading_label')"
+          :rows-per-page-label="t('vote.data.vote_rows_label')"
         >
           <template #body-cell-actions="propsActions">
             <q-td auto-width :props="propsActions">
@@ -26,7 +26,7 @@
                 round
                 :to="`/${route.params.code.toString()}/archive/${propsActions.row.id}`"
               >
-                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Results </q-tooltip>
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]">{{ t('vote.results') }}</q-tooltip>
               </q-btn>
             </q-td>
           </template>
@@ -119,7 +119,7 @@ function getVoteResults(closureId: string) {
 const columns: QTableProps['columns'] = [
   {
     name: 'closed_at',
-    label: 'Closed at',
+    label: t('columns.closed_at'),
     field: 'created_at',
     align: 'left',
     sortable: true,
@@ -129,14 +129,14 @@ const columns: QTableProps['columns'] = [
   },
   {
     name: 'note',
-    label: 'Note',
+    label: t('columns.note'),
     field: 'note',
     align: 'left',
     sortable: true
   },
   {
     name: 'actions',
-    label: 'Actions',
+    label: t('columns.actions'),
     align: 'center',
     field: ''
   }

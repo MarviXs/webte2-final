@@ -1,5 +1,5 @@
 <template>
-  <PageLayout title="Vote" max-width="900px">
+  <PageLayout :title="t('main.vote')" max-width="900px">
     <div v-if="voteStore.question">
       <q-form greedy @submit="submitAnswer">
         <div class="container-dashboard q-pa-lg">
@@ -48,14 +48,14 @@
             v-else-if="voteStore.question.question_type === QuestionType.OPEN"
             class="column q-px-sm q-py-md"
           >
-            <q-input v-model="openText" label="Answer" type="textarea" autogrow />
+            <q-input v-model="openText" :label="t('vote.answear')" type="textarea" autogrow />
           </div>
         </div>
         <div class="q-mt-md">
           <q-btn
             class="shadow q-px-lg"
             color="primary"
-            label="Submit"
+            :label="t('questions.submit')"
             :loading="submitting"
             no-caps
             type="submit"
@@ -71,7 +71,7 @@
     >
       <q-spinner size="32px" color="primary" />
     </div>
-    <div v-else>Question with this code not found</div>
+    <div v-else>{{ t('vote.data.code_not_found') }}</div>
   </PageLayout>
 </template>
 
@@ -85,6 +85,9 @@ import { computed } from 'vue'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 
 const voteStore = useVoteStore()
 const route = useRoute()

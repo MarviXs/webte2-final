@@ -45,6 +45,8 @@
     "vote": "Hlasovanie",
     "guide": "Príručka",
     "questions": "Otázky",
+    "create_question": "Vytvoriť Otázku",
+    "filter": "Filtrovanie podla dátumu",
     "register": {
       "login": "Prihlásiť sa",
       "logout": "Odhlásiť sa",
@@ -62,9 +64,15 @@
     "active": "Aktívny",
     "title": "Názov otázky",
     "type": "Typ otázky",
+    "edit": "Upraviť Otázky",
     "single_choice": "Jedna odpoveď",
     "multiple_choice": "Viaceré odpovede",
     "text": "Text",
+    "create": "Vytvoriť",
+    "update": "Aktualizovať",
+    "delete": "Vymazať",
+    "close": "Zatvoriť",
+    "export": "Exportovať",
     "QR":{
       "cancel": "Zrušiť",
       "format": "Formát",
@@ -83,24 +91,50 @@
     "votes": "Hlas",
     "answear": "Odpoveď",
     "count" : "Zrátanie",
+    "results": "Výsledky",
+    "close_vote" : "Ukončiť hlasovanie",
+    "vote_archive": "Archív hlasovaní",
+    "previous_results": "Výsledky",
+    "previous_archive": "Archív hlasovaní",
     "data":{
+      "code_not_found": "Otázka s týmto kódom nebola nájdená",
       "data": "Žiadne výsledky nenájdené",
       "rows": "Odpovede na stránku",
-      "loading": "Načítavanie výsledkov..."
+      "loading": "Načítavanie výsledkov...",
+      "data_label": "Nenašli sa žiadne otázky",
+      "loading_label": "Načítavanie otázok...",
+      "rows_label": "Otázky na stránku",
+      "user_data_label": "Nenašli sa žiadny používatelia",
+      "user_loading_label": "Načítavanie použivatel...",
+      "user_rows_label": "Používatelia na stránke",
+      "vote_data_label": "Žiadne uzávery hlasovania nenájdené",
+      "vote_loading_label": "Načítava sa archív hlasovaní...",
+      "vote_rows_label": "Uzávery hlasovaní na stránku"
     }    
   },
   "users":{
     "first_name": "Krstné meno",
     "last_name": "Priezvisko",
+    "create_user": "Vytvoriť Použivateľa",
+    "create_users": "Použivatelia",
+    "edit_user": "Upraviť Použivateľa",
     "roles": {
       "admin": "admin",
-      "user": "použivatel"
+      "user": "použivatel",
+      "upper_user": "Použivateľ"
     }, 
     "manage_users": "Klikni sem!"
+  },
+  "columns": {
+    "closed_at": "Uzavreté v",
+    "note": "Poznámka",
+    "actions": "Akcie"
   },
   "account": {
     "label": "Účet",
     "change_password": "Chcete si zmeniť heslo?",
     "manage_users": "Chcete spravovať použivatelov?"
-  }
+  },
+  "todo": "Lorem ipsum dolor sit amet"
+
 }
