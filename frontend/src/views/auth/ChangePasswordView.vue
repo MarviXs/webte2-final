@@ -91,10 +91,10 @@
     try {
       isSubmitting.value = true
       await authService.changePassword(userChangePassword.value)
-      toast.success('Zmena hesla prebehla úspešne')
+      toast.success(t('auth.change_password.toasts.change_password_success'))
       router.push('/')
     } catch (error) {
-      toast.error('Nastala chyba pri zmene hesla')
+      toast.error(t('auth.change_password.toasts.change_password_failed'))
     } finally {
       isSubmitting.value = false
     }

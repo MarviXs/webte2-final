@@ -25,7 +25,7 @@ async function getArchivedResults() {
   try {
     voteResult.value = await VoteService.getArchivedResults(code, closureId)
   } catch (error) {
-    toast.error('Failed to get latest results')
+    toast.error(t('toast.result.get_error'))
   }
 }
 getArchivedResults()

@@ -72,14 +72,18 @@
     "update": "Aktualizovať",
     "delete": "Vymazať",
     "close": "Zatvoriť",
+    "copy": "Kopírovať",
     "export": "Exportovať",
     "QR":{
       "cancel": "Zrušiť",
       "format": "Formát",
       "download": "Stiahnúť",
       "PNG": "PNG",
-      "SVG": "SVG"
-   }
+      "SVG": "SVG",
+      "title": "QR Kód",
+       "resolution": "Rozlíšenie"
+   },
+   "previouse_title": "Otázky"
   },
   "vote": {
     "code": "Vložiť kód",
@@ -124,7 +128,8 @@
       "role": "Rola",
       "upper_user": "Použivateľ"
     }, 
-    "manage_users": "Klikni sem!"
+    "manage_users": "Klikni sem!",
+    "previouse_title": "Použivatelia"
   },
   "columns": {
     "code": "kód",
@@ -141,6 +146,53 @@
     "change_password": "Chcete si zmeniť heslo?",
     "manage_users": "Chcete spravovať použivatelov?"
   },
-  "todo": "Lorem ipsum dolor sit amet"
-
+  "todo": "Lorem ipsum dolor sit amet",
+  "toast": {
+    "questions":{
+      "create": "Otázka bola vytvorená!",
+      "update": "Otázka bola aktualizovaná!",
+      "delete": "Otázka bola vymazaná!",
+      "close": "Otázka bola uzavretá!",
+      "copy": "Otázka bola skopírovaná!",
+      "export": "Otázka bola exportovaná!",
+      "export_error": "Chyba pri exportovaní otázky!",
+      "delete_error": "Chyba pri mazaní otázky!",
+      "update_error": "Chyba pri aktualizovaní otázky!",
+      "create_error": "Chyba pri vytváraní otázky!",
+      "close_error": "Chyba pri uzavretí otázky!",
+      "copy_error": "Chyba pri kopírovaní otázky!",
+      "get_error": "Chyba pri získavaní otázky alebo otázok!",
+      "answer_error": "Chyba pri získavaní odpovedí na otázku!",
+      "error": "Oops! Niečo sa pokazilo!",
+      "not_found": "Otázka nebola nájdená!",
+      "choice_delete_error": "Chyba pri mazaní voľby otázky!"
+    },
+    "users":{
+      "create": "Použivateľ bol vytvorený!",
+      "update": "Použivateľ bol aktualizovaný!",
+      "delete": "Použivateľ bol vymazaný!",
+      "delete_error": "Chyba pri mazaní používateľa!",
+      "update_error": "Chyba pri aktualizovaní používateľa!",
+      "create_error": "Chyba pri vytváraní používateľa!",
+      "get_error": "Chyba pri získavaní používateľa alebo používateľov!",
+      "error": "Oops! Niečo sa pokazilo!"
+    },
+    "unauthorized": "Nemáte povolenie k prístupu!",
+    "answer": {
+      "success": "Odpoveď bola úspešne odoslaná!",
+      "error": "Chyba pri odosielaní odpovede!"
+    },
+    "archive": {
+      "get": "Získaný archív!",
+      "get_error": "Chyba pri získavaní archívu!",
+      "closures": {
+        "get": "Získané uzávery!",
+        "get_error": "Chyba pri získavaní uzáverov!"
+      }
+    },
+    "result": {
+      "get": "Získané výsledky!",
+      "get_error": "Chyba pri získavaní výsledkov!"
+    }
+  }
 }

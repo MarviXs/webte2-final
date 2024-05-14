@@ -136,7 +136,7 @@
                 round
                 :to="`/questions/${propsActions.row.id}/edit`"
               >
-                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Edit </q-tooltip>
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> {{ t('questions.edit') }} </q-tooltip>
               </q-btn>
 
               <!--Dropdown -->
@@ -146,7 +146,7 @@
                     <q-item v-close-popup clickable @click="copyQuestion(propsActions.row.id)">
                       <div class="row items-center q-gutter-sm">
                         <q-icon color="grey-8" size="24px" :name="mdiContentCopy" />
-                        <div>Copy</div>
+                        <div>{{ t('questions.copy') }}</div>
                       </div>
                     </q-item>
                     <q-item v-close-popup clickable @click="deleteQuestion(propsActions.row.id)">
@@ -226,7 +226,7 @@ async function getAllUsers() {
     users.value = await UserService.getUsers()
   } catch (error) {
     console.error(error)
-    toast.error('Failed to load users')
+    toast.error(t('toast.user.get_error'))
   }
 }
 
@@ -242,7 +242,7 @@ async function getQuestions() {
     }
   } catch (error) {
     console.error(error)
-    toast.error('Failed to load questions')
+    toast.error(t('toast.question.get_error'))
   } finally {
     loadingQuestions.value = false
   }
@@ -253,29 +253,29 @@ async function getAnswers(code: string) {
     voteResult.value = await VoteService.getLatestResults(code)
     return voteResult.value.answers
   } catch (error) {
-    toast.error('Failed to get latest results')
+    toast.error(t('toast.question.answer_error'))
   }
 }
 
 async function deleteQuestion(id: string) {
   try {
     await QuestionService.deleteQuestion(id)
-    toast.success('Question deleted successfully')
+    toast.success(t('toast.question.delete'))
     getQuestions()
   } catch (error) {
     console.error(error)
-    toast.error('Failed to delete question')
+    toast.error(t('toast.question.delete_error'))
   }
 }
 
 async function copyQuestion(id: string) {
   try {
     await QuestionService.copyQuestion(id)
-    toast.success('Question copied successfully')
+    toast.success(t('toast.question.copy'))
     getQuestions()
   } catch (error) {
     console.error(error)
-    toast.error('Failed to copy question')
+    toast.error(t('toast.question.copy_error'))
   }
 }
 
@@ -380,7 +380,7 @@ function exportQuestions() {
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error(error)
-      toast.error('Failed to export questions')
+      toast.error(t('toast.question.export_error'))
     }
   }
   exportQuestions()

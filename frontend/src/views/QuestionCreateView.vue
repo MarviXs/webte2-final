@@ -1,7 +1,7 @@
 <template>
   <PageLayout
     :title="t('main.create_question')"
-    previous-title="Questions"
+    :previous-title="t('questions.previouse_title')"
     previous-route="/questions"
     class="full-width"
     max-width="900px"
@@ -67,10 +67,10 @@ async function createQuestion() {
     )
     await Promise.all(choiceCreationPromises)
 
-    toast.success('Question created successfully')
+    toast.success(t('toast.question.create'))
     router.push('/questions')
   } catch (error) {
-    toast.error('Failed to create question')
+    toast.error(t('toast.question.create_error'))
   } finally {
     creatingQuestion.value = false
   }

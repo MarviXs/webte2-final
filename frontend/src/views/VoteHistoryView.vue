@@ -104,7 +104,7 @@ async function getClosures() {
     }
   } catch (error) {
     console.error(error)
-    toast.error('Failed to load question closures')
+    toast.error(t('toast.archive.closures.get_error'))
   } finally {
     loadingClosures.value = false
   }

@@ -73,14 +73,18 @@
     "delete": "Delete",
     "close": "Close",
     "export": "Export",
+    "copy": "Copy",
     "submit": "Submit",
     "QR":{
        "cancel": "Cancel",
        "format": "Format",
        "download": "Download",
        "PNG": "PNG",
-       "SVG": "SVG"
-    }
+       "SVG": "SVG",
+       "title": "QR Code",
+        "resolution": "Resolution"
+    },
+    "previouse_title": "Questions"
   },
   "vote": {
     "code": "Enter code",
@@ -125,7 +129,8 @@
       "user": "user",
       "upper_user": "User"
     }, 
-    "manage_users": "Click here!"
+    "manage_users": "Click here!",
+    "previouse_title": "Users"
   },
   "columns": {
     "code": "Code",
@@ -142,5 +147,53 @@
     "change_password": "Want to change your password?",
     "manage_users": "Want to manage users?"
   },
-  "todo": "Lorem ipsum dolor sit amet"
+  "todo": "Lorem ipsum dolor sit amet",
+  "toast": {
+    "questions":{
+      "create": "Question created!",
+      "update": "Question updated!",
+      "delete": "Question deleted!",
+      "close": "Question closed!",
+      "copy": "Question copied!",
+      "export": "Question exported!",
+      "delete_error": "Error deleting question!",
+      "update_error": "Error updating question!",
+      "create_error": "Error creating question!",
+      "close_error": "Error closing question!",
+      "export_error": "Error exporting question!",
+      "copy_error": "Error copying question!",
+      "get_error": "Error getting question or questions!",
+      "answer_error": "Error getting answers!",
+      "error": "Oops! Something went wrong!",
+      "not_found": "Question not found!",
+      "choice_delete_error": "Error deleting choice!"
+    },
+    "users":{
+      "create": "User created!",
+      "update": "User updated!",
+      "delete": "User deleted!",
+      "delete_error": "Error deleting user!",
+      "update_error": "Error updating user!",
+      "create_error": "Error creating user!",
+      "get_error": "Error getting user or users!",
+      "error": "Oops! Something went wrong!"
+    },
+    "unauthorized": "Unauthorized access!",
+    "answer": {
+      "success": "Answer submitted!",
+      "error": "Error submitting answer!"
+    },
+    "archive": {
+      "get": "Got archive!",
+      "get_error": "Error getting archive!",
+      "closures": {
+        "get": "Got closures!",
+        "get_error": "Error getting closures!"
+      }
+    },
+    "result": {
+      "get": "Got results!",
+      "get_error": "Error getting results!"
+    }
+  }
 }

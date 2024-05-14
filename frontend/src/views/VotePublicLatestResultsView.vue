@@ -24,7 +24,7 @@ async function getLatestResults() {
   try {
     voteResult.value = await VoteService.getLatestResults(code)
   } catch (error) {
-    toast.error('Failed to get latest results')
+    toast.error(t('toast.result.get_error'))
   }
 }
 getLatestResults()

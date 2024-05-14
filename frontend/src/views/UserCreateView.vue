@@ -1,7 +1,7 @@
 <template>
     <PageLayout
     :title="t('users.create_user')"
-      previous-title="Users"
+      :previous-title="t('users.previouse_title')"
       previous-route="/users"
       class="full-width"
       max-width="900px"
@@ -61,10 +61,10 @@
       const createdUser = await UserService.createUser(user.value)
       console.log(createdUser)
   
-      toast.success('User created successfully')
+      toast.success(t('toast.user.create'))
       router.push('/users')
     } catch (error) {
-      toast.error('Failed to create user')
+      toast.error(t('toast.user.create_error'))
     } finally {
         creatingUser.value = false
     }

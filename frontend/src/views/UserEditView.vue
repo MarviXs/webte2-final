@@ -1,7 +1,7 @@
 <template>
     <PageLayout
       :title="t('users.edit_user')"
-      previous-title="Users"
+      :previous-title="t('users.previouse_title')"
       previous-route="/users"
       class="full-width"
       max-width="900px"
@@ -52,7 +52,7 @@
             last_name: userData.last_name,
         }
     } catch (error) {
-        toast.error('Failed to fetch user')
+        toast.error(t('toast.user.get_error'))
         router.push('/users')
     }
   }
@@ -73,10 +73,10 @@
       const editedUser = await UserService.updateUser(userId.value, user.value)
       console.log(editedUser)
   
-      toast.success('User updated successfully')
+      toast.success(t('toast.user.update'))
       router.push('/users')
     } catch (error) {
-      toast.error('Failed to update user')
+      toast.error(t('toast.user.update_error'))
     } finally {
         updatingUser.value = false
     }

@@ -128,11 +128,11 @@ async function submitAnswer() {
   }
   try {
     await voteStore.submitAnswer(answer)
-    toast.success('Answer submitted successfully')
+    toast.success(t('toast.answer.success'))
     router.push(`/${route.params.code}/results`)
 
   } catch (error) {
-    toast.error('Error while submitting answer')
+    toast.error(t('toast.answer.error'))
   } finally {
     submitting.value = false
   }

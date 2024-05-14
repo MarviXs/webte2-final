@@ -67,7 +67,7 @@ async function getLatestResults() {
   try {
     voteResult.value = await VoteService.getLatestResults(code)
   } catch (error) {
-    toast.error('Failed to get latest results')
+    toast.error(t('toast.result.get_error'))
   }
 }
 getLatestResults()
@@ -79,11 +79,11 @@ async function closeVote() {
   const code = route.params.code.toString()
   try {
     await VoteService.closeVote(code, closeVoteNote.value)
-    toast.success('Vote closed successfully')
+    toast.success(t('toast.question.close'))
     closeVoteDialog.value = false
     getLatestResults()
   } catch (error) {
-    toast.error('Failed to close vote')
+    toast.error(t('toast.question.close_error'))
   }
 }
 

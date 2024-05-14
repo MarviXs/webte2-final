@@ -1,7 +1,7 @@
 <template>
   <q-dialog v-model="dialogOpen">
     <q-card>
-      <q-card-section class="text-h6 text-center q-mb-none">QR Code</q-card-section>
+      <q-card-section class="text-h6 text-center q-mb-none">{{ t('questions.QR.title') }}</q-card-section>
       <q-card-section class="q-px-lg">
         <div class="text-center flex items-center justify-center">
           <div class="qrCode" ref="QRCodeRef"></div>
@@ -10,7 +10,7 @@
 
       <q-card-section class="q-mb-md q-px-sm">
         <div class="q-mb-lg q-px-sm">
-          <q-badge color="primary">Resolution: {{ resolution }}px</q-badge>
+          <q-badge color="primary">{{ t('questions.QR.resolution') }}: {{ resolution }}px</q-badge>
           <q-slider
             v-model="resolution"
             :min="100"
@@ -24,7 +24,7 @@
         <q-select
           v-model="extension"
           :options="extensionOptions"
-          :label="t('questions.owner.format')"
+          :label="t('questions.QR.format')"
           outlined
           mapOptions
           emitValue
@@ -33,8 +33,8 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn flat :label="t('questions.owner.cancel')" color="primary" />
-        <q-btn unelevated :label="t('questions.owner.download')" color="primary" :icon="mdiDownload" @click="download" />
+        <q-btn flat :label="t('questions.QR.cancel')" color="primary" />
+        <q-btn unelevated :label="t('questions.QR.download')" color="primary" :icon="mdiDownload" @click="download" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -69,8 +69,8 @@ const qrCodeValue = computed(() => {
 
 const extension = ref<FileExtension>('png')
 const extensionOptions = [
-  { label: t('questions.owner.PNG'), value: 'png' },
-  { label: t('questions.owner.SVG'), value: 'svg' }
+  { label: t('questions.QR.PNG'), value: 'png' },
+  { label: t('questions.QR.SVG'), value: 'svg' }
 ]
 
 const resolution = ref(500)

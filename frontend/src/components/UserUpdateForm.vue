@@ -53,7 +53,7 @@
             </template>
           </q-input>
             <q-select
-                :label="t('user.role')"
+                :label="t('users.roles.role')"
                 v-model="user.role"
                 style="min-width: 200px"
                 class="col-12 col-sm-auto"

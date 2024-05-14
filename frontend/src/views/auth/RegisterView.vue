@@ -114,10 +114,10 @@ async function register() {
     authStore.token = ''
     const res = await authService.register(userRegister.value)
     authStore.token = res.token
-    toast.success('Registrácia prebehla úspešne')
+    toast.success(t('auth.register.toast.register_success'))
     router.push('/')
   } catch (error) {
-    toast.error('Registrácia zlyhala')
+    toast.error(t('auth.register.toast.register_failed'))
   } finally {
     isSubmitting.value = false
   }
