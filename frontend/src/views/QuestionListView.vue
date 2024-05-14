@@ -17,7 +17,7 @@
             <q-popup-proxy cover transition-show="scale" transition-hide="scale" ref="dateProxy">
               <q-date range v-model="filterDate">
                 <div class="row items-center justify-end">
-                  <q-btn v-close-popup :label="t('questions.close')"> color="primary" flat />
+                  <q-btn v-close-popup :label="t('questions.close')" color="primary" flat />
                 </div>
               </q-date>
             </q-popup-proxy>
