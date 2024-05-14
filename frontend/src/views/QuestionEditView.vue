@@ -49,7 +49,7 @@ async function getQuestion() {
     const questionData = await QuestionService.getQuestion(questionId)
     question.value = questionData
   } catch (error) {
-    toast.error(t('toast.question.get_error'))
+    toast.error(t('toast.questions.get_error'))
     router.push('/questions')
   }
 }
@@ -75,10 +75,10 @@ async function updateQuestion() {
     )
     await Promise.all(choiceCreationPromises)
 
-    toast.success(t('toast.question.update'))
+    toast.success(t('toast.questions.update'))
     router.push('/questions')
   } catch (error) {
-    toast.error(t('toast.question.update_error'))
+    toast.error(t('toast.questions.update_error'))
   } finally {
     updatingQuestion.value = false
   }

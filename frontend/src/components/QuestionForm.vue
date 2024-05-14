@@ -95,7 +95,7 @@ async function getAllUsers() {
     userList.value = await UserService.getUsers()
   } catch (error) {
     console.error(error)
-    toast.error(t('toast.user.get_error'))
+    toast.error(t('toast.users.get_error'))
   }
 }
 

@@ -75,7 +75,7 @@ async function deleteChoice(choice: Choice) {
     choices.value = choices.value.filter((c) => c.id !== choice.id)
     updateOrder()
   } catch (error) {
-    toast.error(t('toast.question.choice_delete_error'))
+    toast.error(t('toast.questions.choice_delete_error'))
   }
 }
 

@@ -98,7 +98,7 @@
                 text-color="white"
                 size="0.8rem"
                 class="text-weight-medium"
-                :label="props.row.is_active ? 'Active' : 'Inactive'"
+                :label="props.row.is_active ? t('questions.status.active') : t('questions.status.inactive')"
                 :color="props.row.is_active ? 'green-6' : 'red-6'"
               />
             </q-td>
@@ -114,7 +114,7 @@
                 round
                 :to="`/questions/${propsActions.row.code}/results`"
               >
-                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> Results </q-tooltip>
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> {{ t('vote.results') }} </q-tooltip>
               </q-btn>
 
               <!-- QR Code button -->
@@ -125,7 +125,7 @@
                 round
                 @click="openQRCodeDialog(propsActions.row.code)"
               >
-                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> QR Code </q-tooltip>
+                <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> {{ t('questions.QR.title') }} </q-tooltip>
               </q-btn>
 
               <!-- Edit button -->
@@ -242,7 +242,7 @@ async function getQuestions() {
     }
   } catch (error) {
     console.error(error)
-    toast.error(t('toast.question.get_error'))
+    toast.error(t('toast.questions.get_error'))
   } finally {
     loadingQuestions.value = false
   }
@@ -253,29 +253,29 @@ async function getAnswers(code: string) {
     voteResult.value = await VoteService.getLatestResults(code)
     return voteResult.value.answers
   } catch (error) {
-    toast.error(t('toast.question.answer_error'))
+    toast.error(t('toast.questions.answer_error'))
   }
 }
 
 async function deleteQuestion(id: string) {
   try {
     await QuestionService.deleteQuestion(id)
-    toast.success(t('toast.question.delete'))
+    toast.success(t('toast.questions.delete'))
     getQuestions()
   } catch (error) {
     console.error(error)
-    toast.error(t('toast.question.delete_error'))
+    toast.error(t('toast.questions.delete_error'))
   }
 }
 
 async function copyQuestion(id: string) {
   try {
     await QuestionService.copyQuestion(id)
-    toast.success(t('toast.question.copy'))
+    toast.success(t('toast.questions.copy'))
     getQuestions()
   } catch (error) {
     console.error(error)
-    toast.error(t('toast.question.copy_error'))
+    toast.error(t('toast.questions.copy_error'))
   }
 }
 
@@ -380,7 +380,7 @@ function exportQuestions() {
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error(error)
-      toast.error(t('toast.question.export_error'))
+      toast.error(t('toast.questions.export_error'))
     }
   }
   exportQuestions()

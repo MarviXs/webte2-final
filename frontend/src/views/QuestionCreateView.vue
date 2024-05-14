@@ -67,10 +67,10 @@ async function createQuestion() {
     )
     await Promise.all(choiceCreationPromises)
 
-    toast.success(t('toast.question.create'))
+    toast.success(t('toast.questions.create'))
     router.push('/questions')
   } catch (error) {
-    toast.error(t('toast.question.create_error'))
+    toast.error(t('toast.questions.create_error'))
   } finally {
     creatingQuestion.value = false
   }

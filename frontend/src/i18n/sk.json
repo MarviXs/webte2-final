@@ -83,7 +83,11 @@
       "title": "QR Kód",
        "resolution": "Rozlíšenie"
    },
-   "previouse_title": "Otázky"
+   "previouse_title": "Otázky", 
+   "status": {
+     "active": "Aktívny",
+     "inactive": "Neaktívny"
+   }
   },
   "vote": {
     "code": "Vložiť kód",
@@ -132,7 +136,7 @@
     "previouse_title": "Použivatelia"
   },
   "columns": {
-    "code": "kód",
+    "code": "Kód",
     "question" : "Otázka",
     "closed_at": "Uzavreté v",
     "note": "Poznámka",

@@ -79,11 +79,11 @@ async function closeVote() {
   const code = route.params.code.toString()
   try {
     await VoteService.closeVote(code, closeVoteNote.value)
-    toast.success(t('toast.question.close'))
+    toast.success(t('toast.questions.close'))
     closeVoteDialog.value = false
     getLatestResults()
   } catch (error) {
-    toast.error(t('toast.question.close_error'))
+    toast.error(t('toast.questions.close_error'))
   }
 }
 

@@ -52,7 +52,7 @@
             last_name: userData.last_name,
         }
     } catch (error) {
-        toast.error(t('toast.user.get_error'))
+        toast.error(t('toast.users.get_error'))
         router.push('/users')
     }
   }
@@ -73,10 +73,10 @@
       const editedUser = await UserService.updateUser(userId.value, user.value)
       console.log(editedUser)
   
-      toast.success(t('toast.user.update'))
+      toast.success(t('toast.users.update'))
       router.push('/users')
     } catch (error) {
-      toast.error(t('toast.user.update_error'))
+      toast.error(t('toast.users.update_error'))
     } finally {
         updatingUser.value = false
     }

@@ -82,9 +82,13 @@
        "PNG": "PNG",
        "SVG": "SVG",
        "title": "QR Code",
-        "resolution": "Resolution"
+       "resolution": "Resolution"
     },
-    "previouse_title": "Questions"
+    "previouse_title": "Questions", 
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    }
   },
   "vote": {
     "code": "Enter code",

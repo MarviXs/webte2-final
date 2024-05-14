@@ -61,10 +61,10 @@
       const createdUser = await UserService.createUser(user.value)
       console.log(createdUser)
   
-      toast.success(t('toast.user.create'))
+      toast.success(t('toast.users.create'))
       router.push('/users')
     } catch (error) {
-      toast.error(t('toast.user.create_error'))
+      toast.error(t('toast.users.create_error'))
     } finally {
         creatingUser.value = false
     }

@@ -37,7 +37,7 @@
                     round
                     :to="`/users/${propsActions.row.id}/edit`"
                 >
-                    <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> {{ t('users.edit') }} </q-tooltip>
+                    <q-tooltip content-style="font-size: 11px" :offset="[0, 4]"> {{ t('users.edit_user') }} </q-tooltip>
                 </q-btn>
 
                 <!--Dropdown -->
@@ -100,7 +100,7 @@ async function getAllUsers() {
         users.value = await UserService.getUsers()
     } catch (error) {
         console.error(error)
-        toast.error(t('toast.user.get_error'))
+        toast.error(t('toast.users.get_error'))
     } finally {
         loadingUsers.value = false
     }
@@ -110,11 +110,11 @@ getAllUsers()
 async function deleteUser(id: string) {
     try {
         await UserService.deleteUser(id)
-        toast.success(t('toast.user.delete'))
+        toast.success(t('toast.users.delete'))
         getAllUsers()
     } catch (error) {
         console.error(error)
-        toast.error(t('toast.user.delete_error'))
+        toast.error(t('toast.users.delete_error'))
     }
 }
 

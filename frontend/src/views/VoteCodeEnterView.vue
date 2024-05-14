@@ -55,7 +55,7 @@ async function submitCode() {
     router.push(`/${voteStore.question?.code}`)
   }
   catch (error) {
-    toast.error(t('toast.question.not_found')) 
+    toast.error(t('toast.questions.not_found')) 
   }
   
 }
