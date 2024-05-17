@@ -37,11 +37,11 @@ php artisan migrate
 ## TODO
 
 - [X]  Wordcloud
-- [ ]  Preklad (SK, EN)
+- [X]  Preklad (SK, EN)
 - [X]  Porovnanie historického hlasovania - pridať aktuálne výsledky
 - [X]  Export otázok
 - [X]  Zmena hesla
 - [X]  Admin zobrazenie otázok + filtrovanie
 - [X]  Admin správa použivateľov
-- [ ]  Príručka + export
+- [X]  Príručka + export
 - [ ]  Video dokumentácia
