@@ -198,5 +198,51 @@
       "get": "Získané výsledky!",
       "get_error": "Chyba pri získavaní výsledkov!"
     }
+  },
+  "guide": {
+    "title": "Príručka",
+    "text": "V tomto dokumente sú popísané jednotlivé funkcie aplikácie.",
+    "content": {
+      "login_register": {
+        "title": "Prihlásenie a registrácia",
+        "text": "Pre registráciu je potrebné zadať váš email, meno, priezvisko a heslo. Tieto údaje sú povinné. Následne je možné sa prihlásiť zadaným email-om a heslom"
+      },
+      "voting": {
+        "title": "Hlasovanie",
+        "text": "V časti 'Hlasovanie' používateľ zadá kód hlasovania, ktorý mu musí byť poskytnutý vlastníkom daného hlasovania, a následne buď vyberie odpoveď/odpovede, prípadne napíše vlastnú odpoveď ak je hlasovanie formou voľnej odpovede."
+      },
+      "guest": {
+        "title": "Neprihlásený používateľ",
+        "text": "Neprihlásený používateľ si môže pozrieť tento návod, exportovať si ho ako pdf, hlasovať ako je uvedené vyššie a zaregistrovať, respektíve prihlásiť sa."
+      },
+      "user": {
+        "title": "Prihlásený používateľ",
+        "text": "Prihlásený používateľ môže robiť všetko to čo neprihlásený používateľ, naviac však môže vytvárať hlasovania, pozrieť si štatistiky jeho vytvorených hlasovaní, zatvoriť hlasovanie a ak je potreba zmeniť heslo, môže tak urobiť v časti 'Účet'."
+      },
+      "admin": {
+        "title": "Prihlásený používateľ - administrátor",
+        "text": "Administrátor má všetky práva ako prihlásený používateľ, naviac však môže vytvárať nových používateľov, mazať ich alebo zmeniť ich údaje. Rola 'admin' má práva všetkých rolí, 'user' má práva prihláseného používateľa."
+      },
+      "questions": {
+        "title": "Otázky",
+        "text": "V časti 'otázky' vidí používateľ všetky ním vytvorené otázky. Tu ich môže zmeniť, vymazať, kopírovať a vytvoriť. Vytvoriť otázku sa dá kliknutím na tlačidlo 'Vytvoriť otázku' a následne vyplnením formulára. Zmena otázky funguje rovnako ako jej vytvorenie ale polia už se predvyplnené akutálnymi hodnotami. Vymazaním otázky sa vymažú všetky štatistiky otázky a tým celá zanikne. Kopírovanie otázky vytvorí nový záznam s vlastným kódom ale s rovnako vyplnenými hodnotami otázky"
+      },
+      "questions_admin": {
+        "title": "Otázky",
+        "text": "V časti 'otázky' vidí administrátor všetky otázky vytvorené všetkými používateľmi. Tu ich môže zmeniť, vymazať, kopírovať a vytvoriť. Pri vytváraní otázky má navyše možnosť prideliť otázku ľubovolnému používateľovi, ktorý sa následne stane vlastníkom otázky. Toto je možné aj pri úprave otázky. Keďže administrátor vidí všetky otázky, môže filtrovať otázky aj podľa vlastníka."
+      },
+      "results": {
+        "title": "Výsledky",
+        "text": "V tejto časti sa nachádzajú výsledky práve aktívneho hlasovania. Ak hlasovnie ukončíme kliknutím na tlačidlo 'Ukončiť hlasovnie', momentálne výsledky sa uložia do archívu otázky a aktuálny stav sa zresetuje. Archívne výsledky je možné vidieť v časti 'Archív hlasovní' do ktorej sa dostaneme kliknutím na tlačidlo 'Archív hlasovaní', kde sa zobrazí aj porovnanie s aktuálnym hlasovaním ak je to možné."
+      },
+      "other": {
+        "title": "Ostatné",
+        "list": {
+          "item1":"Exportovanie návodu na použitie ako pdf",
+          "item2":"Prepnutie jazyka (SK/EN)",
+          "item3":"Export otázok a odpovedí vo forme .json (iba prihlásený používatelia)"
+        }
+      }
+    }
   }
 }

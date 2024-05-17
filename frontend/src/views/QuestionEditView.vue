@@ -1,7 +1,7 @@
 <template>
   <PageLayout
     :title="t('questions.edit')"
-    previous-title="Questions"
+    :previous-title="t('questions.previouse_title')"
     previous-route="/questions"
     class="full-width"
     max-width="900px"

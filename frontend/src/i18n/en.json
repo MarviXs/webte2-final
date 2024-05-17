@@ -199,5 +199,51 @@
       "get": "Got results!",
       "get_error": "Error getting results!"
     }
+  },
+  "guide": {
+    "title": "Guide",
+    "text": "This document describes the individual functions of the application.",
+    "content": {
+      "login_register": {
+        "title": "Login and registration",
+        "text": "For registration, you need to enter your email, first name, last name and password. These data are mandatory. Subsequently, it is possible to log in with the entered email and password."
+      },
+      "voting": {
+        "title": "Voting",
+        "text": "In the 'Voting' section, the user enters the voting code, which must be provided to him by the owner of the given vote, and then either selects an answer/answers, or writes his own answer if the voting is in the form of a free answer."
+      },
+      "guest": {
+        "title": "User - without registration",
+        "text": "A non-logged-in user can view this guide, export it as a pdf, vote as above and register or log in."
+      },
+      "user": {
+        "title": "Logged in user",
+        "text": "A logged-in user can do everything that a non-logged-in user can, but in addition, they can create polls, view the statistics of their created polls, close the poll, and if it is necessary to change the password, they can do so in the 'Account' section."
+      },
+      "admin": {
+        "title": "Logged in user - administrator",
+        "text": "The administrator has all the rights as a logged-in user, but can also create new users, delete them or change their data. The role 'admin' has the rights of all roles, 'user' has the rights of the logged-in user."
+      },
+      "questions": {
+        "title": "Questions",
+        "text": "In the 'questions' section, the user can see all the questions created by him. Here he can change, delete, copy and create them. You can create a question by clicking the 'Create question' button and then filling out the form. Changing a question works the same as creating it, but the fields are already pre-filled with current values. Deleting a question will delete all the statistics of the question and thus the whole question will disappear. Copying a question will create a new record with its own code but with the same filled-in question values."
+      },
+      "questions_admin": {
+        "title": "Questions",
+        "text": "In the 'questions' section, the administrator can see all the questions created by all users. Here he can change, delete, copy and create them. When creating a question, he also has the option of assigning the question to any user, who then becomes the owner of the question. This is also possible when editing a question. Since the administrator sees all questions, he can also filter questions by owner."
+      },
+      "results": {
+        "title": "Results",
+        "text": "This section contains the results of the currently active voting. If we end the poll by clicking the 'End poll' button, the current results will be saved in the question archive and the current status will be reset. Archived results can be seen in the 'Voting archive' section, which can be accessed by clicking on the 'Voting archive' button, where a comparison with the current voting will also be displayed, if possible."
+      },
+      "other": {
+        "title": "Other",
+        "list": {
+          "item1":"Exporting the user manual as pdf",
+          "item2":"Switch language (SK/EN)",
+          "item3":"Export of questions and answers in .json format (logged in users only)"
+        }
+      }
+    }
   }
 }
