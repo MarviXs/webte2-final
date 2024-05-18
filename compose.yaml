@@ -30,6 +30,11 @@ services:
   php:
     image: "backendphp"
     restart: unless-stopped
+    environment:
+      - APP_ENV=prod
+      - API_DOMAIN=${APP_URL}
+      - DB_USERNAME=webte
+      - DB_PASSWORD=WebteFinal123[]
     build: 
       context: ./backend
       args:
@@ -67,7 +72,7 @@ services:
       context: ./frontend
       args:
         - BUILD_ENV=production
-        - VITE_API_URL=${APP_URL}:7443/api/
-        - VITE_APP_URL=${APP_URL}:7443/
+        - VITE_API_URL=${APP_URL}/api/
+        - VITE_APP_URL=${APP_URL}/
 volumes:
   webte_mysql:

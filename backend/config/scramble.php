@@ -72,7 +72,9 @@ return [
      * ],
      * ```
      */
-    'servers' => [],
+    'servers' => [
+        'API' => env('API_DOMAIN') . '/api',
+    ],
 
     'middleware' => [],
 
