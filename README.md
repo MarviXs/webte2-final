@@ -73,3 +73,8 @@ php artisan migrate
 
 - Username: `user@example.com`
 - Password: `string`
+
+### App demo user credentials
+
+- Username: `user2@example.com`
+- Password: `string`
