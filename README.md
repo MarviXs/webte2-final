@@ -58,10 +58,15 @@ php artisan migrate
 
 ### URLs
 
-- Frontend: [http://localhost:7080](http://localhost:7080)
-- API Docs: [http://localhost:7080/docs/api](http://localhost:7080/docs/api)
-- Backend: [http://localhost:7080/api](http://localhost:7080/api)
-- PHPMyAdmin: [http://localhost:7080/phpmyadmin/](http://localhost:7080/phpmyadmin/)
+- Frontend: [https://node107.webte.fei.stuba.sk:7443](https://node107.webte.fei.stuba.sk:7443)
+- Backend: [https://node107.webte.fei.stuba.sk:7443/api](https://node107.webte.fei.stuba.sk:7443/api)
+- PHPMyAdmin: [https://node107.webte.fei.stuba.sk:7443/phpmyadmin/](https://node107.webte.fei.stuba.sk:7443/phpmyadmin/)
+
+### DB credentials
+
+- Username: `webte`
+- Password: `WebteFinal123[]`
+- Database: `laravel`
 
 
 ### App demo admin credentials
