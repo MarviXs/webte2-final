@@ -67,7 +67,7 @@ services:
       context: ./frontend
       args:
         - BUILD_ENV=production
-        - VITE_API_URL=${APP_URL}:7080/api/
-        - VITE_APP_URL=${APP_URL}:7080/
+        - VITE_API_URL=${APP_URL}:7443/api/
+        - VITE_APP_URL=${APP_URL}:7443/
 volumes:
   webte_mysql:
