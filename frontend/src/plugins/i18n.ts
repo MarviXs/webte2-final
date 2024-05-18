@@ -3,7 +3,7 @@ import en from '@/i18n/en.json'
 import sk from '@/i18n/sk.json'
 
 const config = {
-  locale: 'en',
+  locale: localStorage.getItem('locale') ?? 'en',
   fallbackLocale: 'en',
   messages: {
     en,
