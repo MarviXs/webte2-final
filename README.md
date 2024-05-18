@@ -1,4 +1,4 @@
-# Zadanie 4
+# Final
 
 ## Local development
 
@@ -29,19 +29,42 @@ php artisan migrate
 - Password: `root`
 - Database: `laravel`
 
+### App demo admin credentials
+
+- Username: `user@example.com`
+- Password: `string`
+
 ### Config
 
 `frontend/env.development`
 `backend/config`
 
-## TODO
 
-- [X]  Wordcloud
-- [X]  Preklad (SK, EN)
-- [X]  Porovnanie historického hlasovania - pridať aktuálne výsledky
-- [X]  Export otázok
-- [X]  Zmena hesla
-- [X]  Admin zobrazenie otázok + filtrovanie
-- [X]  Admin správa použivateľov
-- [X]  Príručka + export
-- [ ]  Video dokumentácia
+## Production
+
+### Start the app in production mode
+
+```bash
+docker compose -f compose.yaml up -d --build
+```
+
+### Run in PHP container
+
+```bash
+composer install
+php artisan migrate
+# php artisan migrate:fresh --seed
+```
+
+### URLs
+
+- Frontend: [http://localhost:7080](http://localhost:7080)
+- API Docs: [http://localhost:7080/docs/api](http://localhost:7080/docs/api)
+- Backend: [http://localhost:7080/api](http://localhost:7080/api)
+- PHPMyAdmin: [http://localhost:7080/phpmyadmin/](http://localhost:7080/phpmyadmin/)
+
+
+### App demo admin credentials
+
+- Username: `user@example.com`
+- Password: `string`
