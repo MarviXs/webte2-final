@@ -37,7 +37,7 @@ services:
           - GID=${GID:-1000}
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_started
     volumes:
       - ./backend:/var/www/html
   db:
@@ -52,11 +52,6 @@ services:
       MYSQL_USER: "webte"
       MYSQL_PASSWORD: "WebteFinal123[]"
       MYSQL_DATABASE: "laravel"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 120s
-      retries: 25
-      interval: 5s
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
@@ -65,7 +60,7 @@ services:
       PMA_ABSOLUTE_URI: ${APP_URL}/phpmyadmin/
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_started
   frontend:
     restart: unless-stopped
     build:
