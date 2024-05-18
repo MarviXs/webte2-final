@@ -78,8 +78,8 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const userLogin = ref<UserLogin>({
-  email: 'user@example.com',
-  password: 'string'
+  email: '',
+  password: ''
 })
 
 const isPwd = ref(true)
