@@ -50,7 +50,6 @@ services:
     restart: unless-stopped
     volumes:
       - webte_mysql:/var/lib/mysql
-      - ./db/export:/docker-entrypoint-initdb.d
       - ./docker/mysql/config:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: "WebteFinal123[]"
